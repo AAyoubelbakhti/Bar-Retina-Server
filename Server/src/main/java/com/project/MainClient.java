@@ -10,18 +10,15 @@ public class MainClient {
             Socket socket = new Socket("localhost", 4545);
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
-
             Scanner scanner = new Scanner(System.in);
-            
-            System.out.println("Selecciona una categoría para filtrar:");
+            System.out.println("Selecciona una categoría par mostrar:");
             System.out.println("1. Beguda");
             System.out.println("2. Primer plat");
             System.out.println("3. Reposteria");
             System.out.println("4. Tapa");
             System.out.println("5. Postre");
-            System.out.print("Elige una opción (1-5): ");
-            
-            int opcion = scanner.nextInt();
+            System.out.print("Tria una opció (1-5): ");
+                        int opcion = scanner.nextInt();
 
             String categoria = "";
             switch (opcion) {
@@ -49,9 +46,8 @@ public class MainClient {
             output.println(categoria);
             String respostaServidor = input.readLine();
             System.out.println("\n---------------------------------------------");
-            System.out.println("Resposta del servidor: " + respostaServidor);
+            System.out.println(respostaServidor);
             System.out.println("---------------------------------------------\n");
-
             scanner.close();
             input.close();
             output.close();
