@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             ServerSocket servidorSocket = new ServerSocket(4545);
-            System.out.println("esperant connexions...");
+            System.out.println("Esperant connexions...");
             FuncsBar.generarXML();
             Socket socket = servidorSocket.accept();
             System.out.println("Client connectat");
@@ -16,17 +16,29 @@ public class Main {
             String missatgeClient = input.readLine();
             System.out.println("Missatge del client: " + missatgeClient);
 
-            if ("Beguda".equals(missatgeClient)) {
-                output.println(FuncsBar.mostrarTags(missatgeClient)); 
-            } else if ("productes".equals(missatgeClient)) {
-                output.println(FuncsBar.mostrarProductes());
-            } else {
-                output.println("Comanda desconeguda");
+            switch (missatgeClient) {
+                case "Beguda":
+                case "Primer plat":
+                case "Reposteria":
+                case "Tapa":
+                case "Postre":
+                    output.println(FuncsBar.mostrarTags(missatgeClient));
+                    break;
+
+                case "productes":
+                    output.println(FuncsBar.mostrarProductes());
+                    break;
+
+                default:
+                    output.println("Comanda desconeguda");
+                    break;
             }
+
             input.close();
             output.close();
             socket.close();
             servidorSocket.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
