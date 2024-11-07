@@ -1,59 +1,85 @@
 package com.project;
 
-import java.io.*;
-import java.net.*;
+import org.json.JSONObject;
 import java.util.Scanner;
 
 public class MainClient {
+
     public static void main(String[] args) {
-        try {
-            Socket socket = new Socket("localhost", 4545);
-            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Selecciona una categoría par mostrar:");
+        String wsLocation = "ws://localhost:4545";
+        UtilsWS wsClient = UtilsWS.getSharedInstance(wsLocation);
+
+        wsClient.onOpen(message -> {
+            System.out.println("Connexió establerta: " + message);
+            showMenu(wsClient);
+        });
+
+        wsClient.onMessage(message -> {
+            JSONObject response = new JSONObject(message);
+            if ("tags".equals(response.getString("type"))) {
+                System.out.println("Respostes per la categoria seleccionada (Tags):");
+                System.out.println(response.getString("tags"));
+            } else if ("productes".equals(response.getString("type"))) {
+                System.out.println("Llista de productes:");
+                System.out.println(response.getString("products"));
+            } else if ("error".equals(response.getString("type"))) {
+                System.out.println("Error: " + response.getString("message"));
+            }
+        });
+
+        wsClient.onClose(message -> {
+            System.out.println("Connexió tancada: " + message);
+        });
+
+        wsClient.onError(message -> {
+            System.out.println("Error de connexió: " + message);
+        });
+
+        while (!wsClient.isOpen()) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static void showMenu(UtilsWS wsClient) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Selecciona una categoria:");
             System.out.println("1. Beguda");
             System.out.println("2. Primer plat");
             System.out.println("3. Reposteria");
             System.out.println("4. Tapa");
             System.out.println("5. Postre");
-            System.out.print("Tria una opció (1-5): ");
-                        int opcion = scanner.nextInt();
+            System.out.println("6. Sortir");
 
-            String categoria = "";
-            switch (opcion) {
+            int option = scanner.nextInt();
+
+            switch (option) {
                 case 1:
-                    categoria = "Beguda";
+                    wsClient.safeSend("Beguda");
                     break;
                 case 2:
-                    categoria = "Primer plat";
+                    wsClient.safeSend("Primer plat");
                     break;
                 case 3:
-                    categoria = "Reposteria";
+                    wsClient.safeSend("Reposteria");
                     break;
                 case 4:
-                    categoria = "Tapa";
+                    wsClient.safeSend("Tapa");
                     break;
                 case 5:
-                    categoria = "Postre";
+                    wsClient.safeSend("Postre");
                     break;
+                case 6:
+                    System.out.println("Sortint...");
+                    wsClient.forceExit();
+                    return;
                 default:
-                    System.out.println("Opción inválida.");
-                    categoria = "Comanda desconeguda";
-                    break;
+                    System.out.println("Opció no vàlida. Torna a provar.");
             }
-
-            output.println(categoria);
-            String respostaServidor = input.readLine();
-            System.out.println("\n---------------------------------------------");
-            System.out.println(respostaServidor);
-            System.out.println("---------------------------------------------\n");
-            scanner.close();
-            input.close();
-            output.close();
-            socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
