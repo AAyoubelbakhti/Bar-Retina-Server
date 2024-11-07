@@ -1,8 +1,8 @@
 package com.project;
 
-import org.java-websocket.server.WebSocketServer;
-import org.java-websocket.WebSocket;
-import org.java-websocket.handshake.ClientHandshake;
+import org.java_websocket.server.WebSocketServer; 
+import org.java_websocket.WebSocket; 
+import org.java_websocket.handshake.ClientHandshake;
 import org.json.JSONObject;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class MainServer extends WebSocketServer {
 
     private static final AtomicInteger connectionCount = new AtomicInteger(0);
-    private static final int MAX_CONNECTIONS = 5; // Máximo número de conexiones permitidas
+    private static final int MAX_CONNECTIONS = 5;
     private static final Map<WebSocket, String> clients = new ConcurrentHashMap<>();
 
     public MainServer(int port) {
@@ -52,18 +52,18 @@ public class MainServer extends WebSocketServer {
             case "Tapa":
             case "Postre":
                 response.put("type", "tags");
-                response.put("tags", FuncsBar.mostrarTags(message)); // Aquí usas tu lógica de tags
+                response.put("tags", FuncsBar.mostrarTags(message));
                 break;
             case "productes":
                 response.put("type", "productes");
-                response.put("products", FuncsBar.mostrarProductes()); // Aquí usas tu lógica de productos
+                response.put("products", FuncsBar.mostrarProductes());
                 break;
             default:
                 response.put("type", "error");
                 response.put("message", "Comanda desconeguda");
                 break;
         }
-        conn.send(response.toString());  // Enviar resposta al client
+        conn.send(response.toString()); 
     }
 
     @Override
