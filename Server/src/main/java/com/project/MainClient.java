@@ -9,7 +9,7 @@ public class MainClient {
             Socket socket = new Socket("localhost", 4545);
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
-            output.println("productes");
+            output.println("Suc de taronja");
             String respostaServidor = input.readLine();
             System.out.println("\n---------------------------------------------");
             System.out.println("Resposta del servidor: " + respostaServidor);
