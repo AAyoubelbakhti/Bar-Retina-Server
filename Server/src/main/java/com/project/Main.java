@@ -1,4 +1,4 @@
-package com.server;
+package com.project;
 
 import java.io.*;
 import java.net.*;

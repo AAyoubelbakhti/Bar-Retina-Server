@@ -1,4 +1,4 @@
-package com.server;
+package com.project;
 
 public class ElementProducte {
     String id;
