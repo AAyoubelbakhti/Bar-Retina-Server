@@ -17,9 +17,8 @@ public class Main {
             System.out.println("Missatge del client: " + missatgeClient);
 
             if ("tags".equals(missatgeClient)) {
-                //output.println(FuncsBar.mostrarTags(missatgeClient)); 
+                output.println(FuncsBar.mostrarTags(missatgeClient)); 
             } else if ("productes".equals(missatgeClient)) {
-                
                 output.println(FuncsBar.mostrarProductes());
             } else {
                 output.println("Comanda desconeguda");

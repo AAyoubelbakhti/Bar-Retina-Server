@@ -133,4 +133,24 @@ public class FuncsBar {
             return null;
         }
     }
+    public static List<String> mostrarTags(String tag) {
+        List<String> elementsList = new ArrayList<>();
+        try {
+            File file = new File("PRODUCTES.XML");
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(file);
+
+            XPathFactory xPathFactory = XPathFactory.newInstance();
+            XPath xPath = xPathFactory.newXPath();
+            XPathExpression expression = xPath.compile("//" + tag);
+            NodeList nodeList = (NodeList) expression.evaluate(doc, XPathConstants.NODESET);
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                elementsList.add(nodeList.item(i).getTextContent());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return elementsList;
     }
+}
