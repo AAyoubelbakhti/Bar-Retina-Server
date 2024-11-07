@@ -6,6 +6,7 @@ import org.java_websocket.handshake.ClientHandshake;
 import org.json.JSONObject;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,7 +17,7 @@ public class MainServer extends WebSocketServer {
     private static final Map<WebSocket, String> clients = new ConcurrentHashMap<>();
 
     public MainServer(int port) {
-        super(port);
+        super(new InetSocketAddress(port));
     }
 
     @Override
