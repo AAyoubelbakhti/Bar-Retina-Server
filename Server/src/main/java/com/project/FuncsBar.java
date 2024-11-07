@@ -1,21 +1,27 @@
 package com.project;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.File;
 import java.util.Arrays;
+import org.w3c.dom.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathFactory;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
-public class GeneradorXML {
+public class FuncsBar {
 
     public static void generarXML() {
         try {
@@ -68,7 +74,6 @@ public class GeneradorXML {
                 Element nom = doc.createElement("nom");
                 nom.appendChild(doc.createTextNode(producte.nom));
                 producteElement.appendChild(nom);
-
                 Element preu = doc.createElement("preu");
                 preu.appendChild(doc.createTextNode(String.valueOf(producte.preu)));
                 producteElement.appendChild(preu);
@@ -90,9 +95,42 @@ public class GeneradorXML {
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File("PRODUCTES.XML"));
             transformer.transform(source, result);
-
         } catch (ParserConfigurationException | TransformerException e) {
             e.printStackTrace();
         }
     }
-}
+
+    public static String mostrarProductes() {
+        try {
+            File file = new File("PRODUCTES.XML");
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(file);
+            doc.getDocumentElement().normalize();
+
+            NodeList producteList = doc.getElementsByTagName("producte");
+            JSONArray jsonArray = new JSONArray();
+
+            for (int i = 0; i < producteList.getLength(); i++) {
+                Node producteNode = producteList.item(i);
+                if (producteNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element producteElement = (Element) producteNode;
+                    JSONObject jsonObject = new JSONObject();
+
+                    jsonObject.put("id", producteElement.getElementsByTagName("id").item(0).getTextContent());
+                    jsonObject.put("nom", producteElement.getElementsByTagName("nom").item(0).getTextContent());
+                    jsonObject.put("preu", producteElement.getElementsByTagName("preu").item(0).getTextContent());
+                    jsonObject.put("descripcio", producteElement.getElementsByTagName("descripcio").item(0).getTextContent());
+                    jsonObject.put("imatge", producteElement.getElementsByTagName("imatge").item(0).getTextContent());
+
+                    jsonArray.put(jsonObject);
+                }
+            }
+
+            return jsonArray.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    }

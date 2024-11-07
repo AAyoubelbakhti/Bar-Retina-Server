@@ -16,7 +16,11 @@
     </properties>
     
     <dependencies>
-        <!-- No hi ha dependències per a aquest exemple simple -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version>
+        </dependency>
     </dependencies>
     
     <build>

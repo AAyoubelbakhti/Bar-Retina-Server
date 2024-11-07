@@ -8,14 +8,22 @@ public class Main {
         try {
             ServerSocket servidorSocket = new ServerSocket(4545);
             System.out.println("esperant connexions...");
-            GeneradorXML.generarXML();
+            FuncsBar.generarXML();
             Socket socket = servidorSocket.accept();
             System.out.println("Client connectat");
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
             String missatgeClient = input.readLine();
             System.out.println("Missatge del client: " + missatgeClient);
-            output.println("Server OK");
+
+            if ("tags".equals(missatgeClient)) {
+                //output.println(FuncsBar.mostrarTags(missatgeClient)); 
+            } else if ("productes".equals(missatgeClient)) {
+                
+                output.println(FuncsBar.mostrarProductes());
+            } else {
+                output.println("Comanda desconeguda");
+            }
             input.close();
             output.close();
             socket.close();
@@ -25,4 +33,3 @@ public class Main {
         }
     }
 }
-
