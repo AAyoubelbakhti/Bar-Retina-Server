@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<productes>
+    <producte>
+        <id>1</id>
+        <nom>Cafè</nom>
+        <preu>1.5</preu>
+        <descripcio>Beguda calenta feta de grans de cafè.</descripcio>
+        <imatge>cafe.png</imatge>
+    </producte>
+    <producte>
+        <id>2</id>
+        <nom>Te</nom>
+        <preu>1.3</preu>
+        <descripcio>Beguda calenta feta de fulles de te.</descripcio>
+        <imatge>te.png</imatge>
+    </producte>
+    <producte>
+        <id>3</id>
+        <nom>Refresc</nom>
+        <preu>1.0</preu>
+        <descripcio>Beguda freda amb gas.</descripcio>
+        <imatge>refresc.png</imatge>
+    </producte>
+    <producte>
+        <id>4</id>
+        <nom>Suc de taronja</nom>
+        <preu>1.8</preu>
+        <descripcio>Suc de taronja acabat d'esprémer.</descripcio>
+        <imatge>suc.png</imatge>
+    </producte>
+    <producte>
+        <id>5</id>
+        <nom>Cervesa</nom>
+        <preu>2.5</preu>
+        <descripcio>Beguda alcohòlica amb gas.</descripcio>
+        <imatge>cervesa.png</imatge>
+    </producte>
+    <producte>
+        <id>6</id>
+        <nom>Entrepà</nom>
+        <preu>3.5</preu>
+        <descripcio>Pa farcit d'ingredients variats.</descripcio>
+        <imatge>entrepà.png</imatge>
+    </producte>
+    <producte>
+        <id>7</id>
+        <nom>Hamburguesa</nom>
+        <preu>5.0</preu>
+        <descripcio>Carn en pa amb enciam i tomàquet.</descripcio>
+        <imatge>hamburguesa.png</imatge>
+    </producte>
+    <producte>
+        <id>8</id>
+        <nom>Amanida</nom>
+        <preu>4.5</preu>
+        <descripcio>Amanida fresca de vegetals.</descripcio>
+        <imatge>amanida.png</imatge>
+    </producte>
+    <producte>
+        <id>9</id>
+        <nom>Pizza</nom>
+        <preu>7.0</preu>
+        <descripcio>Pizza amb salsa de tomàquet i formatge.</descripcio>
+        <imatge>pizza.png</imatge>
+    </producte>
+    <producte>
+        <id>10</id>
+        <nom>Pasta</nom>
+        <preu>6.5</preu>
+        <descripcio>Pasta italiana amb salsa bolonyesa.</descripcio>
+        <imatge>pasta.png</imatge>
+    </producte>
+    <producte>
+        <id>11</id>
+        <nom>Pastís</nom>
+        <preu>3.0</preu>
+        <descripcio>Dolç de xocolata.</descripcio>
+        <imatge>pastis.png</imatge>
+    </producte>
+    <producte>
+        <id>12</id>
+        <nom>Galetes</nom>
+        <preu>2.0</preu>
+        <descripcio>Galetes dolces i cruixents.</descripcio>
+        <imatge>galetes.png</imatge>
+    </producte>
+    <producte>
+        <id>13</id>
+        <nom>Croissant</nom>
+        <preu>1.8</preu>
+        <descripcio>Pa dolç d'origen francès.</descripcio>
+        <imatge>croissant.png</imatge>
+    </producte>
+    <producte>
+        <id>14</id>
+        <nom>Dònuts</nom>
+        <preu>2.2</preu>
+        <descripcio>Donut de sucre i canyella.</descripcio>
+        <imatge>donuts.png</imatge>
+    </producte>
+    <producte>
+        <id>15</id>
+        <nom>Gelat</nom>
+        <preu>2.5</preu>
+        <descripcio>Gelat de vainilla amb xocolata.</descripcio>
+        <imatge>gelat.png</imatge>
+    </producte>
+    <producte>
+        <id>16</id>
+        <nom>Aigua</nom>
+        <preu>0.8</preu>
+        <descripcio>Aigua mineral embotellada.</descripcio>
+        <imatge>aigua.png</imatge>
+    </producte>
+    <producte>
+        <id>17</id>
+        <nom>Sandvitx</nom>
+        <preu>3.0</preu>
+        <descripcio>Pa amb pernil i formatge.</descripcio>
+        <imatge>sandvitx.png</imatge>
+    </producte>
+    <producte>
+        <id>18</id>
+        <nom>Empanada</nom>
+        <preu>2.5</preu>
+        <descripcio>Empanada farcida de carn.</descripcio>
+        <imatge>empanada.png</imatge>
+    </producte>
+    <producte>
+        <id>19</id>
+        <nom>Patates fregides</nom>
+        <preu>1.5</preu>
+        <descripcio>Patates fregides cruixents.</descripcio>
+        <imatge>patates.png</imatge>
+    </producte>
+    <producte>
+        <id>20</id>
+        <nom>Nachos</nom>
+        <preu>3.5</preu>
+        <descripcio>Nachos amb formatge fos.</descripcio>
+        <imatge>nachos.png</imatge>
+    </producte>
+    <producte>
+        <id>21</id>
+        <nom>Pastís de fruita</nom>
+        <preu>3.5</preu>
+        <descripcio>Pastís amb fruita.</descripcio>
+        <imatge>pastis_fruita.png</imatge>
+    </producte>
+    <producte>
+        <id>22</id>
+        <nom>Magdalena</nom>
+        <preu>2.2</preu>
+        <descripcio>Magdalena de xocolata.</descripcio>
+        <imatge>magdalena.png</imatge>
+    </producte>
+    <producte>
+        <id>23</id>
+        <nom>Brownie</nom>
+        <preu>2.8</preu>
+        <descripcio>Brownie de xocolata.</descripcio>
+        <imatge>brownie.png</imatge>
+    </producte>
+    <producte>
+        <id>24</id>
+        <nom>Xurros</nom>
+        <preu>1.5</preu>
+        <descripcio>Xurros amb sucre.</descripcio>
+        <imatge>xurros.png</imatge>
+    </producte>
+    <producte>
+        <id>25</id>
+        <nom>Smoothie</nom>
+        <preu>3.2</preu>
+        <descripcio>Batut de fruites.</descripcio>
+        <imatge>smoothie.png</imatge>
+    </producte>
+</productes>

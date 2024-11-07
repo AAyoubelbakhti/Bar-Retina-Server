@@ -8,6 +8,7 @@ public class Main {
         try {
             ServerSocket servidorSocket = new ServerSocket(4545);
             System.out.println("esperant connexions...");
+            GeneradorXML.generarXML();
             Socket socket = servidorSocket.accept();
             System.out.println("Client connectat");
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
