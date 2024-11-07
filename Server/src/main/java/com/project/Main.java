@@ -16,7 +16,7 @@ public class Main {
             String missatgeClient = input.readLine();
             System.out.println("Missatge del client: " + missatgeClient);
 
-            if ("tags".equals(missatgeClient)) {
+            if ("Beguda".equals(missatgeClient)) {
                 output.println(FuncsBar.mostrarTags(missatgeClient)); 
             } else if ("productes".equals(missatgeClient)) {
                 output.println(FuncsBar.mostrarProductes());
