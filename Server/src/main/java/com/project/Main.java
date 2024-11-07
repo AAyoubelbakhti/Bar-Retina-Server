@@ -15,7 +15,7 @@ public class Main {
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
             String missatgeClient = input.readLine();
             System.out.println("Missatge del client: " + missatgeClient);
-            output.println("Hola des del servidor!");
+            output.println("Server OK");
             input.close();
             output.close();
             socket.close();
