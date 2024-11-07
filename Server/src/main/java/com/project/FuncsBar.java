@@ -33,35 +33,35 @@ public class FuncsBar {
             doc.appendChild(rootElement);
 
             List<ElementProducte> productes = Arrays.asList(
-                new ElementProducte("1", "Cafè", 1.5, "Beguda calenta feta de grans de cafè.", "cafe.png"),
-                new ElementProducte("2", "Te", 1.3, "Beguda calenta feta de fulles de te.", "te.png"),
-                new ElementProducte("3", "Refresc", 1.0, "Beguda freda amb gas.", "refresc.png"),
-                new ElementProducte("4", "Suc de taronja", 1.8, "Suc de taronja acabat d'esprémer.", "suc.png"),
-                new ElementProducte("5", "Cervesa", 2.5, "Beguda alcohòlica amb gas.", "cervesa.png"),
+                new ElementProducte("1", "Cafè", 1.5, "Beguda calenta feta de grans de cafè.", "cafe.png", "Beguda"),
+                new ElementProducte("2", "Te", 1.3, "Beguda calenta feta de fulles de te.", "te.png",  "Beguda"),
+                new ElementProducte("3", "Refresc", 1.0, "Beguda freda amb gas.", "refresc.png",  "Beguda"),
+                new ElementProducte("4", "Suc de taronja", 1.8, "Suc de taronja acabat d'esprémer.", "suc.png",  "Beguda"),
+                new ElementProducte("5", "Cervesa", 2.5, "Beguda alcohòlica amb gas.", "cervesa.png",  "Beguda"),
 
-                new ElementProducte("6", "Entrepà", 3.5, "Pa farcit d'ingredients variats.", "entrepà.png"),
-                new ElementProducte("7", "Hamburguesa", 5.0, "Carn en pa amb enciam i tomàquet.", "hamburguesa.png"),
-                new ElementProducte("8", "Amanida", 4.5, "Amanida fresca de vegetals.", "amanida.png"),
-                new ElementProducte("9", "Pizza", 7.0, "Pizza amb salsa de tomàquet i formatge.", "pizza.png"),
-                new ElementProducte("10", "Pasta", 6.5, "Pasta italiana amb salsa bolonyesa.", "pasta.png"),
+                new ElementProducte("6", "Entrepà", 3.5, "Pa farcit d'ingredients variats.", "entrepà.png",  "Primer plat"),
+                new ElementProducte("7", "Hamburguesa", 5.0, "Carn en pa amb enciam i tomàquet.", "hamburguesa.png",  "Primer plat"),
+                new ElementProducte("8", "Amanida", 4.5, "Amanida fresca de vegetals.", "amanida.png",  "Primer plat"),
+                new ElementProducte("9", "Pizza", 7.0, "Pizza amb salsa de tomàquet i formatge.", "pizza.png",  "Primer plat"),
+                new ElementProducte("10", "Pasta", 6.5, "Pasta italiana amb salsa bolonyesa.", "pasta.png",  "Primer plat"),
 
-                new ElementProducte("11", "Pastís", 3.0, "Dolç de xocolata.", "pastis.png"),
-                new ElementProducte("12", "Galetes", 2.0, "Galetes dolces i cruixents.", "galetes.png"),
-                new ElementProducte("13", "Croissant", 1.8, "Pa dolç d'origen francès.", "croissant.png"),
-                new ElementProducte("14", "Dònuts", 2.2, "Donut de sucre i canyella.", "donuts.png"),
-                new ElementProducte("15", "Gelat", 2.5, "Gelat de vainilla amb xocolata.", "gelat.png"),
+                new ElementProducte("11", "Pastís", 3.0, "Dolç de xocolata.", "pastis.png",  "Reposteria"),
+                new ElementProducte("12", "Galetes", 2.0, "Galetes dolces i cruixents.", "galetes.png",  "Reposteria"),
+                new ElementProducte("13", "Croissant", 1.8, "Pa dolç d'origen francès.", "croissant.png",  "Reposteria"),
+                new ElementProducte("14", "Dònuts", 2.2, "Donut de sucre i canyella.", "donuts.png",  "Reposteria"),
+                new ElementProducte("15", "Gelat", 2.5, "Gelat de vainilla amb xocolata.", "gelat.png",  "Reposteria"),
 
-                new ElementProducte("16", "Aigua", 0.8, "Aigua mineral embotellada.", "aigua.png"),
-                new ElementProducte("17", "Sandvitx", 3.0, "Pa amb pernil i formatge.", "sandvitx.png"),
-                new ElementProducte("18", "Empanada", 2.5, "Empanada farcida de carn.", "empanada.png"),
-                new ElementProducte("19", "Patates fregides", 1.5, "Patates fregides cruixents.", "patates.png"),
-                new ElementProducte("20", "Nachos", 3.5, "Nachos amb formatge fos.", "nachos.png"),
-
-                new ElementProducte("21", "Pastís de fruita", 3.5, "Pastís amb fruita.", "pastis_fruita.png"),
-                new ElementProducte("22", "Magdalena", 2.2, "Magdalena de xocolata.", "magdalena.png"),
-                new ElementProducte("23", "Brownie", 2.8, "Brownie de xocolata.", "brownie.png"),
-                new ElementProducte("24", "Xurros", 1.5, "Xurros amb sucre.", "xurros.png"),
-                new ElementProducte("25", "Smoothie", 3.2, "Batut de fruites.", "smoothie.png")
+                new ElementProducte("16", "Truita de patates", 2.5, "Truita de patates casolana.", "truita_patates.png", "Tapa"),
+                new ElementProducte("17", "Calamars a la romana", 3.0, "Calamars a la romana fregits.", "calamars.png", "Tapa"),
+                new ElementProducte("18", "Croquetes de pollastre", 2.8, "Croquetes casolanes de pollastre.", "croquetes_pollastre.png", "Tapa"),
+                new ElementProducte("19", "Braves", 2.5, "Patates braves amb salsa picant.", "braves.png", "Tapa"),
+                new ElementProducte("20", "Pa amb tomàquet", 1.5, "Pa amb tomàquet i oli d'oliva.", "pa_tomaquet.png", "Tapa"),
+                
+                new ElementProducte("21", "Pastís de fruita", 3.5, "Pastís amb fruita.", "pastis_fruita.png",  "Postre"),
+                new ElementProducte("22", "Magdalena", 2.2, "Magdalena de xocolata.", "magdalena.png",  "Postre"),
+                new ElementProducte("23", "Brownie", 2.8, "Brownie de xocolata.", "brownie.png",  "Postre"),
+                new ElementProducte("24", "Xurros", 1.5, "Xurros amb sucre.", "xurros.png",  "Postre"),
+                new ElementProducte("25", "Smoothie", 3.2, "Batut de fruites.", "smoothie.png",  "Postre")
             );
 
             for (ElementProducte producte : productes) {
@@ -85,6 +85,10 @@ public class FuncsBar {
                 Element imatge = doc.createElement("imatge");
                 imatge.appendChild(doc.createTextNode(producte.imatge));
                 producteElement.appendChild(imatge);
+
+                Element categoria = doc.createElement("categoria");
+                categoria.appendChild(doc.createTextNode(producte.categoria));
+                producteElement.appendChild(categoria);
 
                 rootElement.appendChild(producteElement);
             }
