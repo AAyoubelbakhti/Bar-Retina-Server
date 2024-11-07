@@ -11,7 +11,6 @@ public class MainClient {
 
         wsClient.onOpen(message -> {
             System.out.println("Connexió establerta: " + message);
-            showMenu(wsClient);
         });
 
         wsClient.onMessage(message -> {
@@ -42,9 +41,7 @@ public class MainClient {
                 e.printStackTrace();
             }
         }
-    }
 
-    private static void showMenu(UtilsWS wsClient) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Selecciona una categoria:");
