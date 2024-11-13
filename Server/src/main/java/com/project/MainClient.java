@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class MainClient {
 
     public static void main(String[] args) {
-        String wsLocation = "ws://localhost:4545";
+        String wsLocation = "wss://jmartinezmarin.ieti.site:443";
         UtilsWS wsClient = UtilsWS.getSharedInstance(wsLocation);
 
         wsClient.onOpen(message -> {

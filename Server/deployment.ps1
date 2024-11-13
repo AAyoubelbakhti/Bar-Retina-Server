@@ -21,7 +21,7 @@ Get-Content $configFile | ForEach-Object {
 }
 
 # Parámetros por defecto
-$DEFAULT_USER = "barretina1"
+$DEFAULT_USER = "jmartinezmarin"
 $DEFAULT_RSA_PATH = "$HOME\.ssh\id_rsa"
 $DEFAULT_SERVER_PORT = 20127
 
