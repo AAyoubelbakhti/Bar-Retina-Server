@@ -52,7 +52,7 @@ public class MainServer extends WebSocketServer {
             case "Reposteria":
             case "Tapa":
             case "Postre":
-                response.put("type", "tags");
+                response.put("type", "productes");
                 response.put("products", FuncsBar.mostrarTags(message));
                 break;
             case "productes":
