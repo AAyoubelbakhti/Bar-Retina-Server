@@ -17,7 +17,7 @@ public class MainClient {
             JSONObject response = new JSONObject(message);
             if ("tags".equals(response.getString("type"))) {
                 System.out.println("Respostes per la categoria seleccionada (Tags):");
-                System.out.println(response.getString("tags"));
+                System.out.println(response.getString("products"));
             } else if ("productes".equals(response.getString("type"))) {
                 System.out.println("Llista de productes:");
                 System.out.println(response.getString("products"));
