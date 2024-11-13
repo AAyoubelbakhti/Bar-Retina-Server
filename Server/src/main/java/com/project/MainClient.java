@@ -45,6 +45,7 @@ public class MainClient {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Selecciona una categoria:");
+            System.out.println("5. Postre");
             System.out.println("1. Beguda");
             System.out.println("2. Primer plat");
             System.out.println("3. Reposteria");
@@ -55,6 +56,10 @@ public class MainClient {
             int option = scanner.nextInt();
 
             switch (option) {
+                case 0:
+                    wsClient.safeSend("productes");
+                    break;
+
                 case 1:
                     wsClient.safeSend("Beguda");
                     break;
