@@ -42,18 +42,17 @@ public class MainServer extends WebSocketServer {
 
     @Override
     public void onMessage(WebSocket conn, String message) {
+
+        JSONObject messageJson = new JSONObject(message);
+        String type = messageJson.getString("type");
         String clientName = clients.get(conn);
         System.out.println("Missatge de " + clientName + ": " + message);
-
         JSONObject response = new JSONObject();
-        switch (message) {
-            case "Beguda":
-            case "Primer plat":
-            case "Reposteria":
-            case "Tapa":
-            case "Postre":
-                response.put("type", "productes");
-                response.put("products", FuncsBar.mostrarTags(message));
+        switch (type) {
+            case "tags":
+                String tag = messageJson.getString("body");
+                response.put("type", "tags");
+                response.put("products", FuncsBar.mostrarTags(tag));
                 break;
             case "productes":
                 response.put("type", "productes");
