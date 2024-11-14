@@ -21,7 +21,7 @@ Get-Content $configFile | ForEach-Object {
 }
 
 # Parámetros por defecto
-$DEFAULT_USER = "jmartinezmarin"
+$DEFAULT_USER = "barretina1"
 $DEFAULT_RSA_PATH = "$HOME\.ssh\id_rsa"
 $DEFAULT_SERVER_PORT = 20127
 
@@ -50,7 +50,7 @@ if (Test-Path $JAR_PATH) {
 }
 
 # Ejecutar el comando para compilar el proyecto
-Write-Host "Ejecutando el comando ./run.ps1 com.server.Main build..."
+Write-Host "Ejecutando el comando com.project.MainServer build..."
 
 .\run.ps1 com.project.MainServer build
 
@@ -101,6 +101,7 @@ ssh -i $RSA_PATH -p $SERVER_PORT "$USER@ieticloudpro.ieti.cat"
 
 # Mostrar reglas actuales de iptables (se puede realizar también desde SSH si es necesario)
 Write-Host "Mostrando las reglas actuales de iptables en la tabla NAT..."
-ssh -i $RSA_PATH -p $SERVER_PORT "$USER@ieticloudpro.ieti.cat" "sudo iptables -t nat -L -n -v"
 
+ssh -i $RSA_PATH -p $SERVER_PORT "$USER@ieticloudpro.ieti.cat" "sudo iptables-save -t nat | grep -q -- '--dport 80' || sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000"
+ssh -i $RSA_PATH -p $SERVER_PORT "$USER@ieticloudpro.ieti.cat" "sudo iptables -t nat -L -n -v"
 Write-Host "Despliegue completado. Sesión SSH aún activa."
