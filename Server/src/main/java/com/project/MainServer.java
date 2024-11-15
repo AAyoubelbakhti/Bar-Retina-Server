@@ -15,9 +15,11 @@ public class MainServer extends WebSocketServer {
     private static final AtomicInteger connectionCount = new AtomicInteger(0);
     private static final int MAX_CONNECTIONS = 5;
     private static final Map<WebSocket, String> clients = new ConcurrentHashMap<>();
+    private final BDD bdd;
 
     public MainServer(int port) {
         super(new InetSocketAddress(port));
+        this.bdd = new BDD();
     }
 
     @Override
@@ -73,6 +75,7 @@ public class MainServer extends WebSocketServer {
 
     @Override
     public void onStart() {
+        bdd.connect();
         System.out.println("Servidor WebSocket iniciat al port: " + getPort());
     }
 
