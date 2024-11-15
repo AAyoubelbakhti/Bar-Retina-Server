@@ -82,6 +82,7 @@ desktop.ini
 *.tar.gz
 *.rar
 
+ 
 # Binary files
 *.class
 *.dll

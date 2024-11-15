@@ -15,11 +15,11 @@ public class MainServer extends WebSocketServer {
     private static final AtomicInteger connectionCount = new AtomicInteger(0);
     private static final int MAX_CONNECTIONS = 5;
     private static final Map<WebSocket, String> clients = new ConcurrentHashMap<>();
-    private final BDD bdd;
+   // private final BDD bdd;
 
     public MainServer(int port) {
         super(new InetSocketAddress(port));
-        this.bdd = new BDD();
+      //  this.bdd = new BDD();
     }
 
     @Override
@@ -44,7 +44,6 @@ public class MainServer extends WebSocketServer {
 
     @Override
     public void onMessage(WebSocket conn, String message) {
-
         JSONObject messageJson = new JSONObject(message);
         String type = messageJson.getString("type");
         String clientName = clients.get(conn);
@@ -60,6 +59,8 @@ public class MainServer extends WebSocketServer {
                 response.put("type", "productes");
                 response.put("products", FuncsBar.mostrarProductes());
                 break;
+
+            
             default:
                 response.put("type", "error");
                 response.put("message", "Comanda desconeguda");
@@ -76,7 +77,7 @@ public class MainServer extends WebSocketServer {
 
     @Override
     public void onStart() {
-        bdd.connect();
+       // bdd.connect();
         System.out.println("Servidor WebSocket iniciat al port: " + getPort());
     }
 

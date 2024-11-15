@@ -14,7 +14,7 @@ public class MainClient {
         });
 
         wsClient.onMessage(message -> {
-            //System.out.println("X:"  + message);
+            System.out.println("X:"  + message);
             JSONObject response = new JSONObject(message);
             if ("tags".equals(response.getString("type"))) {
                 System.out.println("Respostes per la categoria seleccionada (Tags):");
@@ -55,25 +55,42 @@ public class MainClient {
             System.out.println("6. Sortir");
 
             int option = scanner.nextInt();
+            JSONObject message = new JSONObject();
 
             switch (option) {
                 case 0:
-                    wsClient.safeSend("productes");
+                    message.put("type", "productes");
+                    wsClient.safeSend(message.toString());
                     break;
 
                 case 1:
-                    wsClient.safeSend("Beguda");
+                    message.put("type", "tags");
+                    message.put("body", "Beguda");
+
+                    wsClient.safeSend(message.toString());
                     break;
                 case 2:
-                    wsClient.safeSend("Primer plat");
+                    message.put("type", "tags");
+                    message.put("body", "Primer plat");
+                    wsClient.safeSend(message.toString());
                     break;
                 case 3:
-                    wsClient.safeSend("Reposteria");
+                    message.put("type", "tags");
+                    message.put("body", "Reposteria");
+                    wsClient.safeSend(message.toString());
+                    
                     break;
                 case 4:
-                    wsClient.safeSend("Tapa");
+                    message.put("type", "tags");
+                    message.put("body", "Tapa");
+                    wsClient.safeSend(message.toString());
+                   
                     break;
                 case 5:
+                    message.put("type", "tags");
+                    message.put("body", "Postre");
+                    wsClient.safeSend(message.toString());
+               
                     wsClient.safeSend("Postre");
                     break;
                 case 6:
