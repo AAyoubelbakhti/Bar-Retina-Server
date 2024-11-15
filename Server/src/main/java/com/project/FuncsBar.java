@@ -174,9 +174,9 @@ public class FuncsBar {
 
                     // String imageName = "/assets/img/"
                     //         + producteElement.getElementsByTagName("imatge").item(0).getTextContent();
-                    // String base64 = imageToBase64(imageName);
+                    //String base64 = imageToBase64(imageName);
 
-                    // jsonObject.put("imatge", base64);
+                    jsonObject.put("imatge", producteElement.getElementsByTagName("imatge").item(0).getTextContent());
 
                     jsonArray.put(jsonObject);
                 }
