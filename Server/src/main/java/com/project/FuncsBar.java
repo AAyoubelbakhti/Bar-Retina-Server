@@ -15,12 +15,13 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
+
 import java.util.Base64;
 
 public class FuncsBar {
@@ -113,7 +114,7 @@ public class FuncsBar {
             Transformer transformer = transformerFactory.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("PRODUCTES.XML"));
+            StreamResult result = new StreamResult(new File("/assets/PRODUCTES.XML"));
             transformer.transform(source, result);
         } catch (ParserConfigurationException | TransformerException e) {
             e.printStackTrace();
@@ -145,10 +146,15 @@ public class FuncsBar {
 
     public static String mostrarProductes() {
         try {
-            File file = new File("PRODUCTES.XML");
+            // Carga el archivo desde el classpath
+            InputStream inputStream = FuncsBar.class.getResourceAsStream("/assets/PRODUCTES.XML");
+            if (inputStream == null) {
+                throw new FileNotFoundException("Archivo PRODUCTES.XML no encontrado en el classpath.");
+            }
+
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(file);
+            Document doc = builder.parse(inputStream);
             doc.getDocumentElement().normalize();
 
             NodeList producteList = doc.getElementsByTagName("producte");
@@ -183,22 +189,30 @@ public class FuncsBar {
         }
     }
 
+
     public static String mostrarTags(String categoria) {
         try {
-            File file = new File("PRODUCTES.XML");
+            // Carga el archivo desde el classpath
+            InputStream inputStream = FuncsBar.class.getResourceAsStream("/assets/PRODUCTES.XML");
+            if (inputStream == null) {
+                throw new FileNotFoundException("Archivo PRODUCTES.XML no encontrado en el classpath.");
+            }
+    
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(file);
+            Document doc = builder.parse(inputStream);
             doc.getDocumentElement().normalize();
             XPath xPath = XPathFactory.newInstance().newXPath();
             String expression = "//producte[categoria='" + categoria + "']";
             NodeList nodeList = (NodeList) xPath.evaluate(expression, doc, XPathConstants.NODESET);
             JSONArray jsonArray = new JSONArray();
+    
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node producteNode = nodeList.item(i);
                 if (producteNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element producteElement = (Element) producteNode;
                     JSONObject jsonObject = new JSONObject();
+    
                     jsonObject.put("id", producteElement.getElementsByTagName("id").item(0).getTextContent());
                     jsonObject.put("nom", producteElement.getElementsByTagName("nom").item(0).getTextContent());
                     jsonObject.put("preu", producteElement.getElementsByTagName("preu").item(0).getTextContent());
@@ -215,8 +229,10 @@ public class FuncsBar {
 
             return jsonArray.toString();
         } catch (Exception e) {
+            System.err.println("No es pot obrir l'arxiu");
             e.printStackTrace();
             return null;
         }
     }
+    
 }
