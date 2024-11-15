@@ -29,7 +29,7 @@
         <nom>Suc de taronja</nom>
         <preu>1.8</preu>
         <descripcio>Suc de taronja acabat d'esprémer.</descripcio>
-        <imatge>suc.png</imatge>
+        <imatge>suc-de-taronja.png</imatge>
         <categoria>Beguda</categoria>
     </producte>
     <producte>
@@ -45,7 +45,7 @@
         <nom>Entrepà</nom>
         <preu>3.5</preu>
         <descripcio>Pa farcit d'ingredients variats.</descripcio>
-        <imatge>entrepà.png</imatge>
+        <imatge>entrepa.png</imatge>
         <categoria>Primer plat</categoria>
     </producte>
     <producte>
@@ -125,7 +125,7 @@
         <nom>Truita de patates</nom>
         <preu>2.5</preu>
         <descripcio>Truita de patates casolana.</descripcio>
-        <imatge>truita_patates.png</imatge>
+        <imatge>truita-de-patates.png</imatge>
         <categoria>Tapa</categoria>
     </producte>
     <producte>
@@ -133,7 +133,7 @@
         <nom>Calamars a la romana</nom>
         <preu>3.0</preu>
         <descripcio>Calamars a la romana fregits.</descripcio>
-        <imatge>calamars.png</imatge>
+        <imatge>calamars-a-la-romana.png</imatge>
         <categoria>Tapa</categoria>
     </producte>
     <producte>
@@ -141,7 +141,7 @@
         <nom>Croquetes de pollastre</nom>
         <preu>2.8</preu>
         <descripcio>Croquetes casolanes de pollastre.</descripcio>
-        <imatge>croquetes_pollastre.png</imatge>
+        <imatge>croquetes-de-pollastre.png</imatge>
         <categoria>Tapa</categoria>
     </producte>
     <producte>
@@ -149,7 +149,7 @@
         <nom>Braves</nom>
         <preu>2.5</preu>
         <descripcio>Patates braves amb salsa picant.</descripcio>
-        <imatge>braves.png</imatge>
+        <imatge>patates-braves.png</imatge>
         <categoria>Tapa</categoria>
     </producte>
     <producte>
@@ -157,7 +157,7 @@
         <nom>Pa amb tomàquet</nom>
         <preu>1.5</preu>
         <descripcio>Pa amb tomàquet i oli d'oliva.</descripcio>
-        <imatge>pa_tomaquet.png</imatge>
+        <imatge>pa-amb-tomaquet.png</imatge>
         <categoria>Tapa</categoria>
     </producte>
     <producte>
@@ -165,7 +165,7 @@
         <nom>Pastís de fruita</nom>
         <preu>3.5</preu>
         <descripcio>Pastís amb fruita.</descripcio>
-        <imatge>pastis_fruita.png</imatge>
+        <imatge>pastis-de-fruita.png</imatge>
         <categoria>Postre</categoria>
     </producte>
     <producte>
