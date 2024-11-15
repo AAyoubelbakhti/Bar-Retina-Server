@@ -87,6 +87,7 @@ public class BDD {
         } catch (SQLException e) {
             System.err.println("Error al obtenir les comandes: " + e.getMessage());
         }
+        System.out.println(comandes.toString());
         return comandes;
     }
 

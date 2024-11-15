@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.net.InetSocketAddress;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -59,7 +60,14 @@ public class MainServer extends WebSocketServer {
             case "productes":
                 response.put("type", "productes");
                 response.put("products", FuncsBar.mostrarProductes());
+                List<Comanda> comandes = bdd.obtenirComandes();
                 break;
+            case "select-comanda":
+                // List<Comanda> comandes = bdd.obtenirComandes();
+                // response.put("type", "comandes");
+                // response.put("body", comandes.toString());
+                break;
+
             default:
                 response.put("type", "error");
                 response.put("message", "Comanda desconeguda");
