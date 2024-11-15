@@ -64,6 +64,7 @@ public class MainServer extends WebSocketServer {
                 response.put("message", "Comanda desconeguda");
                 break;
         }
+        //System.out.println("response: " + response.toString());
         conn.send(response.toString()); 
     }
 
@@ -78,7 +79,7 @@ public class MainServer extends WebSocketServer {
     }
 
     public static void main(String[] args) {
-        MainServer server = new MainServer(4545);
+        MainServer server = new MainServer(3000);
         server.start();
 
         System.out.println("Servidor en execució. Prem CTRL+C per aturar-lo.");
