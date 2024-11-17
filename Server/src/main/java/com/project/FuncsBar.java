@@ -218,11 +218,15 @@ public class FuncsBar {
                     jsonObject.put("preu", producteElement.getElementsByTagName("preu").item(0).getTextContent());
                     jsonObject.put("descripcio",
                             producteElement.getElementsByTagName("descripcio").item(0).getTextContent());
-                    String imageName = "/assets/img/"
-                            + producteElement.getElementsByTagName("imatge").item(0).getTextContent();
-                    String base64 = imageToBase64(imageName);
+                   
 
-                    jsonObject.put("imatge", base64);
+                      // String imageName = "/assets/img/"
+                    //         + producteElement.getElementsByTagName("imatge").item(0).getTextContent();
+                    //String base64 = imageToBase64(imageName);
+
+                    jsonObject.put("imatge", producteElement.getElementsByTagName("imatge").item(0).getTextContent());
+
+                   
                     jsonArray.put(jsonObject);
                 }
             }
