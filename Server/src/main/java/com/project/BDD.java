@@ -8,7 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import com.mysql.cj.xdevapi.JsonArray;
 
 public class BDD {
 
@@ -44,7 +47,8 @@ public class BDD {
         return connection;
     }
 
-    public boolean insertComanda(int idTaula, int idCambrer, String comanda, String dataComanda, String estatComanda, double preuComanda, boolean pagada) {
+    public boolean insertComanda(int idTaula, int idCambrer, String comanda, String dataComanda, String estatComanda,
+            double preuComanda, boolean pagada) {
         String sql = "INSERT INTO comandes (id_taula, id_cambrer, comanda, data_comanda, estat_comanda, preu_comanda, pagada) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = getConnection().prepareStatement(sql)) {
             statement.setInt(1, idTaula);
@@ -64,37 +68,38 @@ public class BDD {
         }
     }
 
-    public List<Comanda> obtenirComandes() {
+    public JSONArray obtenirComandes() {
         String sql = "SELECT id_comanda, id_taula, id_cambrer, comanda, data_comanda, estat_comanda, preu_comanda, pagada FROM comandes ORDER BY data_comanda DESC";
-        List<Comanda> comandes = new ArrayList<>();
+        JSONArray arrayComandes = new JSONArray();
 
         try (PreparedStatement statement = getConnection().prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery()) {
+                ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
-                Comanda comanda = new Comanda(
-                    resultSet.getInt("id_comanda"),
-                    resultSet.getInt("id_taula"),
-                    resultSet.getInt("id_cambrer"),
-                    resultSet.getString("comanda"),
-                    resultSet.getString("data_comanda"),
-                    resultSet.getString("estat_comanda"),
-                    resultSet.getDouble("preu_comanda"),
-                    resultSet.getBoolean("pagada")
-                );
-                comandes.add(comanda);
+
+                JSONObject comanda = new JSONObject();
+
+                comanda.put("id_comanda", resultSet.getInt("id_comanda"));
+                comanda.put("id_taula", resultSet.getInt("id_taula"));
+                comanda.put("id_cambrer", resultSet.getInt("id_cambrer"));
+                comanda.put("comanda", resultSet.getString("comanda"));
+                comanda.put("data_comanda", resultSet.getString("data_comanda"));
+                comanda.put("estat_comanda", resultSet.getString("estat_comanda"));
+                comanda.put("preu_comanda", resultSet.getDouble("preu_comanda"));
+                comanda.put("pagada", resultSet.getBoolean("pagada"));
+                arrayComandes.put(comanda);
             }
         } catch (SQLException e) {
             System.err.println("Error al obtenir les comandes: " + e.getMessage());
         }
-        System.out.println(comandes.toString());
-        return comandes;
+        return arrayComandes;
     }
 
-    public boolean cambiComanda(int idComanda, Integer idTaula, Integer idCambrer, String comanda, String dataComanda, String estatComanda, Double preuComanda, Boolean pagada) {
+    public boolean cambiComanda(int idComanda, Integer idTaula, Integer idCambrer, String comanda, String dataComanda,
+            String estatComanda, Double preuComanda, Boolean pagada) {
         StringBuilder sql = new StringBuilder("UPDATE comandes SET ");
         List<Object> params = new ArrayList<>();
-                if (idTaula != null) {
+        if (idTaula != null) {
             sql.append("id_taula = ?, ");
             params.add(idTaula);
         }
@@ -129,12 +134,12 @@ public class BDD {
         sql.setLength(sql.length() - 2);
         sql.append(" WHERE id_comanda = ?");
         params.add(idComanda);
-    
+
         try (PreparedStatement statement = getConnection().prepareStatement(sql.toString())) {
             for (int i = 0; i < params.size(); i++) {
                 statement.setObject(i + 1, params.get(i));
             }
-    
+
             int rowsUpdated = statement.executeUpdate();
             System.out.println("Comanda actualitzada");
             return rowsUpdated > 0;
@@ -143,6 +148,5 @@ public class BDD {
             return false;
         }
     }
-
 
 }

@@ -1,0 +1,102 @@
+[
+    {
+        "estat_comanda": "en curs",
+        "data_comanda": "2024-11-15 14:45:00",
+        "comanda": "Tapa, plat principal i caf",
+        "id_comanda": 10,
+        "pagada": false,
+        "id_taula": 10,
+        "preu_comanda": 28.5,
+        "id_cambrer": 105
+    },
+    {
+        "estat_comanda": "pagada",
+        "data_comanda": "2024-11-15 14:30:00",
+        "comanda": "Beguda i tapa",
+        "id_comanda": 9,
+        "pagada": true,
+        "id_taula": 9,
+        "preu_comanda": 10,
+        "id_cambrer": 104
+    },
+    {
+        "estat_comanda": "llesta",
+        "data_comanda": "2024-11-15 14:15:00",
+        "comanda": "Copa de vi",
+        "id_comanda": 8,
+        "pagada": true,
+        "id_taula": 8,
+        "preu_comanda": 5,
+        "id_cambrer": 102
+    },
+    {
+        "estat_comanda": "en curs",
+        "data_comanda": "2024-11-15 14:00:00",
+        "comanda": "Postre",
+        "id_comanda": 7,
+        "pagada": false,
+        "id_taula": 7,
+        "preu_comanda": 6.5,
+        "id_cambrer": 103
+    },
+    {
+        "estat_comanda": "en curs",
+        "data_comanda": "2024-11-15 13:45:00",
+        "comanda": "Plat principal i vi",
+        "id_comanda": 6,
+        "pagada": false,
+        "id_taula": 6,
+        "preu_comanda": 22,
+        "id_cambrer": 101
+    },
+    {
+        "estat_comanda": "llesta",
+        "data_comanda": "2024-11-15 13:30:00",
+        "comanda": "Plat principal, postre i beguda",
+        "id_comanda": 5,
+        "pagada": true,
+        "id_taula": 5,
+        "preu_comanda": 30,
+        "id_cambrer": 105
+    },
+    {
+        "estat_comanda": "pagada",
+        "data_comanda": "2024-11-15 13:15:00",
+        "comanda": "Beguda i aperitiu",
+        "id_comanda": 4,
+        "pagada": true,
+        "id_taula": 4,
+        "preu_comanda": 8.5,
+        "id_cambrer": 104
+    },
+    {
+        "estat_comanda": "en curs",
+        "data_comanda": "2024-11-15 13:00:00",
+        "comanda": "Plat principal i beguda",
+        "id_comanda": 3,
+        "pagada": false,
+        "id_taula": 3,
+        "preu_comanda": 25,
+        "id_cambrer": 103
+    },
+    {
+        "estat_comanda": "en curs",
+        "data_comanda": "2024-11-15 12:45:00",
+        "comanda": "Beguda i postre",
+        "id_comanda": 2,
+        "pagada": false,
+        "id_taula": 2,
+        "preu_comanda": 12.75,
+        "id_cambrer": 102
+    },
+    {
+        "estat_comanda": "en curs",
+        "data_comanda": "2024-11-15 12:30:00",
+        "comanda": "Tapa i beguda",
+        "id_comanda": 1,
+        "pagada": false,
+        "id_taula": 1,
+        "preu_comanda": 15.5,
+        "id_cambrer": 101
+    }
+]

@@ -3,9 +3,13 @@ package com.project;
 import org.java_websocket.server.WebSocketServer; 
 import org.java_websocket.WebSocket; 
 import org.java_websocket.handshake.ClientHandshake;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.concurrent.atomic.AtomicInteger;
+
+import javax.management.remote.JMXConnectorServerMBean;
+
 import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.Map;
@@ -60,12 +64,11 @@ public class MainServer extends WebSocketServer {
             case "productes":
                 response.put("type", "productes");
                 response.put("products", FuncsBar.mostrarProductes());
-                List<Comanda> comandes = bdd.obtenirComandes();
                 break;
             case "select-comanda":
-                // List<Comanda> comandes = bdd.obtenirComandes();
-                // response.put("type", "comandes");
-                // response.put("body", comandes.toString());
+                JSONArray comandes = bdd.obtenirComandes();
+                response.put("type", "comandes");
+                response.put("body", comandes.toString());
                 break;
 
             default:
