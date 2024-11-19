@@ -83,6 +83,21 @@
             <artifactId>Java-WebSocket</artifactId>
             <version>1.5.3</version>
         </dependency>
+      
+        <!-- Dependencia de MySQL Connector -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+
+        <!-- Dependencia de org.json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20240303</version> <!-- Asegúrate de que esta es la última versión -->
+        </dependency>
+
         <!-- Advanced command line tools -->
         <dependency>
             <groupId>org.jline</groupId>

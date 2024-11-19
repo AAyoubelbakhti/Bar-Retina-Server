@@ -11,13 +11,16 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.mysql.cj.xdevapi.JsonArray;
 
 public class BDD {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/comandes";
-    private static final String USER = "barretina";
-    private static final String PASSWORD = "barretina";
+    private static final String URL = "jdbc:mysql://localhost:3306/comandas";
+    //private static final String URL = "jdbc:mysql://localhost:3306/comandes";// comandEEEEs
+
+    // private static final String USER = "barretina";
+    // private static final String PASSWORD = "barretina";
+    private static final String USER = "root";
+    private static final String PASSWORD = "linux1612";
     private Connection connection;
 
     public void connect() {

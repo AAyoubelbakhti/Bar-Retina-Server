@@ -3,12 +3,13 @@ package com.project;
 import org.java_websocket.server.WebSocketServer; 
 import org.java_websocket.WebSocket; 
 import org.java_websocket.handshake.ClientHandshake;
+import org.json.JSONArray;
 import org.json.JSONObject;
-
-import com.mysql.cj.xdevapi.JsonArray;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.net.InetSocketAddress;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -17,9 +18,11 @@ public class MainServer extends WebSocketServer {
     private static final AtomicInteger connectionCount = new AtomicInteger(0);
     private static final int MAX_CONNECTIONS = 5;
     private static final Map<WebSocket, String> clients = new ConcurrentHashMap<>();
+    private final BDD bdd;
 
     public MainServer(int port) {
         super(new InetSocketAddress(port));
+        this.bdd = new BDD();
     }
 
     @Override
@@ -44,18 +47,15 @@ public class MainServer extends WebSocketServer {
 
     @Override
     public void onMessage(WebSocket conn, String message) {
-<<<<<<< Updated upstream
-=======
 
         JSONObject messageJson = new JSONObject(message);
         
         String type = messageJson.getString("type");
->>>>>>> Stashed changes
         String clientName = clients.get(conn);
         System.out.println("Missatge de " + clientName + ": " + message);
 
         JSONObject response = new JSONObject();
-        switch (message) {
+        switch (type) {
             case "Beguda":
             case "Primer plat":
             case "Reposteria":
@@ -68,8 +68,6 @@ public class MainServer extends WebSocketServer {
                 response.put("type", "productes");
                 response.put("products", FuncsBar.mostrarProductes());
                 break;
-<<<<<<< Updated upstream
-=======
             case "select-comanda":
                 JSONArray comandes = bdd.obtenirComandes();
                 response.put("type", "comandes");
@@ -77,23 +75,40 @@ public class MainServer extends WebSocketServer {
                 break;
                
             case "update-comanda":
+            case "insert-comanda":
                 JSONObject messajeData = messageJson.getJSONObject("body");
             // [{"id":"1","nom":"CafÃ¨","descripcio":"Beguda calenta feta de grans de cafÃ¨.","imatge":"cafe.png","preu":3,"quantitat":2},
             // {"id":"2","nom":"Te","descripcio":"Beguda calenta feta de fulles de te.","imatge":"te.png","preu":6.5,"quantitat":5},{"id":"3","nom":"Refresc","descripcio":"Beguda freda amb gas.","imatge":"refresc.png","preu":2,"quantitat":2},
             // {"id":"4","nom":"Suc de taronja","descripcio":"Suc de taronja acabat d'esprÃ©mer.","imatge":"suc-de-taronja.png","preu":1.8,"quantitat":1}]
-                String dataComanda = messageJson.getJSONArray("dataComanda").toString(); 
+                String comandaTxt = messajeData.getJSONArray("comandaTxt").toString(); 
 
-                int idTaula = messageJson.getInt("idTaula");
-                int idComanda = bdd.obtenirUltimIdComandaPerTaula(idTaula);
-                int idCambrer = messageJson.getInt("idCambrer");
-                String estatComanda = messageJson.getString("estatComanda");
-                Double preuComanda = messageJson.getDouble("preuComanda");
+                int idTaula = messajeData.getInt("idTaula");
+               
+                int idCambrer = messajeData.getInt("idCambrer");
+                String estatComanda = messajeData.getString("estatComanda");
+                Double preuComanda = messajeData.getDouble("preuComanda");
 
-                bdd.cambiComanda(idComanda, idTaula, idCambrer, "comanda", dataComanda, estatComanda, preuComanda, false);
+                Date dataComanda = new Date();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String formattedDate = dateFormat.format(dataComanda);
+                
+                if (type.equals("update-comanda")){
+                    int idComanda = bdd.obtenirUltimIdComandaPerTaula(idTaula);
+                    bdd.cambiComanda(idComanda, idTaula, idCambrer, comandaTxt , formattedDate.toString(), estatComanda, preuComanda, false);
+
+                }else {
+                    bdd.insertComanda(idTaula, idCambrer, comandaTxt , formattedDate.toString(), estatComanda, preuComanda, false);
+
+                }
                 System.out.println(message);
-            break;
+                break;
 
->>>>>>> Stashed changes
+            
+                
+                // insertComanda(int idTaula, int idCambrer, String comanda, String dataComanda, String estatComanda,
+                // double preuComanda, boolean pagada)
+                
+
             default:
                 response.put("type", "error");
                 response.put("message", "Comanda desconeguda");
