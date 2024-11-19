@@ -15,7 +15,7 @@ import org.json.JSONObject;
 public class BDD {
 
     private static final String URL = "jdbc:mysql://localhost:3306/comandas";
-    //private static final String URL = "jdbc:mysql://localhost:3306/comandes";// comandEEEEs
+    // private static final String URL = "jdbc:mysql://localhost:3306/comandes";// comandEEEEs
 
     // private static final String USER = "barretina";
     // private static final String PASSWORD = "barretina";
