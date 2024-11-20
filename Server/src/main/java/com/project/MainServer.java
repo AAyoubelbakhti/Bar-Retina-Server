@@ -71,9 +71,9 @@ public class MainServer extends WebSocketServer {
                 response.put("body", comandes.toString());
                 break;
             case "select-comanda":
-                // JSONArray comandes = bdd.obtenirComandes();
-                // response.put("type", "comandes");
-                // response.put("body", comandes.toString());
+                JSONArray comandes = bdd.obtenirComandes();
+                response.put("type", "comandes");
+                response.put("body", comandes.toString());
                 break;
                
             case "update-comanda":
