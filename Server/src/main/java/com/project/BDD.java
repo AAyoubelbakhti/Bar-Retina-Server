@@ -11,8 +11,6 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.mysql.cj.xdevapi.JsonArray;
-
 public class BDD {
 
     private static final String URL = "jdbc:mysql://localhost:3306/comandes";
