@@ -71,7 +71,7 @@ public class MainServer extends WebSocketServer {
                 response.put("body", comandes.toString());
                 break;
             case "select-comanda":
-                JSONArray comandes = bdd.obtenirComandes();
+                comandes = bdd.obtenirComandes();
                 response.put("type", "comandes");
                 response.put("body", comandes.toString());
                 break;
@@ -131,7 +131,7 @@ public class MainServer extends WebSocketServer {
     }
 
     public static void main(String[] args) {
-        MainServer server = new MainServer(4545);
+        MainServer server = new MainServer(3000);
         server.start();
 
         System.out.println("Servidor en execució. Prem CTRL+C per aturar-lo.");
