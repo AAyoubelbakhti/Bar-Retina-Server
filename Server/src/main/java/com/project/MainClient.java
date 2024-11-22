@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class MainClient {
 
     public static void main(String[] args) {
-        String wsLocation = "ws://localhost:4545";
+        String wsLocation = "ws://localhost:3000";
         UtilsWS wsClient = UtilsWS.getSharedInstance(wsLocation);
 
         wsClient.onOpen(message -> {
@@ -15,18 +15,33 @@ public class MainClient {
 
         wsClient.onMessage(message -> {
             System.out.println("Resposta del servidor: " + message);
-            JSONObject response = new JSONObject(message);
-            if ("tags".equals(response.getString("type"))) {
-                System.out.println("Respostes per la categoria seleccionada (Tags):");
-                System.out.println(response.getString("products"));
-            } else if ("productes".equals(response.getString("type"))) {
-                System.out.println("Llista de productes:");
-                System.out.println(response.getString("products"));
-            } else if ("productesMesVenuts".equals(response.getString("type"))) {
-                System.out.println("Productes més venuts:");
-                System.out.println(response.getString("products"));
-            } else if ("error".equals(response.getString("type"))) {
-                System.out.println("Error: " + response.getString("message"));
+            try {
+                JSONObject response = new JSONObject(message);
+                String type = response.getString("type");
+
+                switch (type) {
+                    case "tags":
+                        System.out.println("Respostes per la categoria seleccionada (Tags):");
+                        System.out.println(response.get("products"));
+                        break;
+                    case "productes":
+                        System.out.println("Llista de productes:");
+                        System.out.println(response.get("products"));
+                        break;
+                    case "productesMesVenuts":
+                        System.out.println("Productes més venuts:");
+                        System.out.println(response.get("products"));
+                        break;
+                    case "error":
+                        System.out.println("Error: " + response.getString("message"));
+                        break;
+                    default:
+                        System.out.println("Resposta desconeguda del servidor.");
+                        break;
+                }
+            } catch (Exception e) {
+                System.err.println("Error al processar la resposta del servidor: " + e.getMessage());
+                e.printStackTrace();
             }
         });
 
@@ -87,12 +102,12 @@ public class MainClient {
                     wsClient.safeSend(message.toString());
                     break;
                 case 6:
-                    message.put("type", "productesMesVenuts");
+                    message.put("type", "venuts");
                     wsClient.safeSend(message.toString());
                     break;
                 case 7:
                     System.out.println("Sortint...");
-                    wsClient.safeSend("Sortir"); // Enviar un mensaje al servidor si es necesario
+                    wsClient.safeSend("Sortir");
                     wsClient.forceExit();
                     return;
                 default:

@@ -149,36 +149,46 @@ public class BDD {
     public String productesMesVenuts() {
         String sql = "SELECT comanda FROM comandes WHERE pagada = TRUE";
         Map<String, JSONObject> productes = new HashMap<>();
-    
         try (PreparedStatement statement = getConnection().prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 String comandaJson = resultSet.getString("comanda");
                 JSONArray comandes = new JSONArray(comandaJson);
-                    for (int i = 0; i < comandes.length(); i++) {
+                for (int i = 0; i < comandes.length(); i++) {
                     JSONObject producte = comandes.getJSONObject(i);
                     String nom = producte.getString("nom");
                     int quantitat = producte.getInt("quantitat");
                     double preu = producte.getDouble("preu");
-    
                     if (!productes.containsKey(nom)) {
                         JSONObject dades = new JSONObject();
                         dades.put("quantitat", 0);
                         dades.put("preu", 0.0);
                         productes.put(nom, dades);
                     }
-    
                     JSONObject dadesProducte = productes.get(nom);
                     dadesProducte.put("quantitat", dadesProducte.getInt("quantitat") + quantitat);
-                    dadesProducte.put("preu", dadesProducte.getDouble("preu") + (quantitat * preu));
+                    dadesProducte.put("preu", dadesProducte.getDouble("preu") + preu);
                 }
             }
         } catch (SQLException e) {
             System.err.println("Error al obtenir els productes més venuts: " + e.getMessage());
         }
     
-        return new JSONObject(productes).toString();
-    }
+        JSONArray ordenados = new JSONArray();
+        productes.entrySet().stream()
+                .sorted((entry1, entry2) -> {
+                    int q1 = entry1.getValue().getInt("quantitat");
+                    int q2 = entry2.getValue().getInt("quantitat");
+                    return Integer.compare(q2, q1);
+                })
+                .forEach(entry -> {
+                    JSONObject obj = new JSONObject();
+                    obj.put("nom", entry.getKey());
+                    obj.put("dades", entry.getValue());
+                    ordenados.put(obj);
+                });
     
-
+        return ordenados.toString();
+    }
+        
 }
