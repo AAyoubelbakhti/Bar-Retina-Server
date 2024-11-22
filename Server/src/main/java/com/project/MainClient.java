@@ -14,6 +14,7 @@ public class MainClient {
         });
 
         wsClient.onMessage(message -> {
+            //System.out.println("X:"  + message);
             JSONObject response = new JSONObject(message);
             if ("tags".equals(response.getString("type"))) {
                 System.out.println("Respostes per la categoria seleccionada (Tags):");

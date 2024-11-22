@@ -31,7 +31,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>com.server.Main</mainClass>
+                  <mainClass>com.project.MainServer</mainClass>
                 </transformer>
               </transformers>
               <finalName>server-package</finalName>
@@ -72,4 +72,12 @@
       </build>
     </profile>
   </profiles>
+  <dependencies>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.33</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
 </project>

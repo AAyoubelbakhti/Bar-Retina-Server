@@ -105,3 +105,4 @@ Write-Host "Mostrando las reglas actuales de iptables en la tabla NAT..."
 ssh -i $RSA_PATH -p $SERVER_PORT "$USER@ieticloudpro.ieti.cat" "sudo iptables-save -t nat | grep -q -- '--dport 80' || sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000"
 ssh -i $RSA_PATH -p $SERVER_PORT "$USER@ieticloudpro.ieti.cat" "sudo iptables -t nat -L -n -v"
 Write-Host "Despliegue completado. Sesión SSH aún activa."
+
