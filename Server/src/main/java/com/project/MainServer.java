@@ -69,7 +69,12 @@ public class MainServer extends WebSocketServer {
                 response.put("type", "productes");
                 response.put("products", FuncsBar.mostrarProductes());
                 response.put("body", comandes.toString());
+                response.put("imatges", FuncsBar.mostrarImagenes().toString());
                 break;
+            // case "imatges":
+            //     response.put("type", "imatges");
+                
+                // break;
             case "select-comanda":
                 comandes = bdd.obtenirComandes();
                 response.put("type", "comandes");
@@ -131,7 +136,7 @@ public class MainServer extends WebSocketServer {
     }
 
     public static void main(String[] args) {
-        MainServer server = new MainServer(3000);
+        MainServer server = new MainServer(4545);
         server.start();
 
         System.out.println("Servidor en execució. Prem CTRL+C per aturar-lo.");

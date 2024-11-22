@@ -6,6 +6,8 @@ import javax.xml.transform.OutputKeys;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.util.Arrays;
+import java.util.Base64;
+
 import org.w3c.dom.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,6 +19,7 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +109,29 @@ public class FuncsBar {
         }
     }
 
+     private static String imageToBase64(String resourcePath) {
+        try {
+            // Carga la imagen desde los recursos del proyecto
+            InputStream imageStream = FuncsBar.class.getResourceAsStream(resourcePath);
+
+            if (imageStream == null) {
+                System.err.println("No se pudo encontrar la imagen en la ruta especificada. " + resourcePath);
+                return null;
+            }
+
+            // Lee el InputStream como un array de bytes
+            byte[] imageBytes = imageStream.readAllBytes();
+            imageStream.close();
+
+            // Codifica el array de bytes en Base64
+            String encodedImage = Base64.getEncoder().encodeToString(imageBytes);
+            return encodedImage;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
    
     public static String mostrarProductes() {
         try {
@@ -135,6 +161,12 @@ public class FuncsBar {
                     jsonObject.put("descripcio", producteElement.getElementsByTagName("descripcio").item(0).getTextContent());
                     jsonObject.put("imatge", producteElement.getElementsByTagName("imatge").item(0).getTextContent());
 
+                    // String imageName = "/assets/img/"
+                    //         + producteElement.getElementsByTagName("imatge").item(0).getTextContent();
+                            
+                    // String base64 = imageToBase64(imageName);
+
+                    //jsonObject.put("imatge", base64);
                     jsonArray.put(jsonObject);
                 }
             }
@@ -175,6 +207,59 @@ public class FuncsBar {
                     jsonObject.put("preu", producteElement.getElementsByTagName("preu").item(0).getTextContent());
                     jsonObject.put("descripcio", producteElement.getElementsByTagName("descripcio").item(0).getTextContent());
                     jsonObject.put("imatge", producteElement.getElementsByTagName("imatge").item(0).getTextContent());
+                    
+                    
+                    jsonArray.put(jsonObject);
+                }
+            }
+    
+            return jsonArray.toString();
+        } catch (Exception e) {
+            System.err.println("No es pot obrir l'arxiu");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String mostrarImagenes() {
+        try {
+            // Carga el archivo desde el classpath
+            InputStream inputStream = FuncsBar.class.getResourceAsStream("/assets/PRODUCTES.XML");
+            if (inputStream == null) {
+                throw new FileNotFoundException("Archivo PRODUCTES.XML no encontrado en el classpath.");
+            }
+    
+            // Procesar el XML
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(inputStream);
+            doc.getDocumentElement().normalize();
+    
+            // Obtener todos los nodos <producte>
+            NodeList nodeList = doc.getElementsByTagName("producte");
+    
+            JSONArray jsonArray = new JSONArray();
+    
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node producteNode = nodeList.item(i);
+                if (producteNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element producteElement = (Element) producteNode;
+                    JSONObject jsonObject = new JSONObject();
+    
+                    // Obtener los datos del producto
+                    String id = producteElement.getElementsByTagName("id").item(0).getTextContent();
+                   
+                    String imatge = producteElement.getElementsByTagName("imatge").item(0).getTextContent();
+    
+                    // Convertir la imagen a Base64
+                    String imagePath = "/assets/img/demo/" + imatge; // Ruta de la imagen
+                    
+                    String base64Image = imageToBase64(imagePath);
+    
+                    // Agregar los datos al JSON
+                    jsonObject.put("id", id);
+                    jsonObject.put("nom_imatge", imatge);
+                    jsonObject.put("imatge", base64Image); // Agregar la imagen como Base64
     
                     jsonArray.put(jsonObject);
                 }
@@ -188,4 +273,5 @@ public class FuncsBar {
         }
     }
     
+   
 }
