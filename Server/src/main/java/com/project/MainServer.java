@@ -59,7 +59,10 @@ public class MainServer extends WebSocketServer {
                 response.put("type", "productes");
                 response.put("products", FuncsBar.mostrarProductes());
                 break;
-
+                case "venuts":
+                response.put("type", "productesMesVenuts");
+                response.put("products", new BDD().productesMesVenuts());
+                break;
             
             default:
                 response.put("type", "error");

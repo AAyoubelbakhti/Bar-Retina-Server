@@ -7,8 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-
+import org.json.JSONObject;
+import org.json.JSONArray;
+import java.util.Map;
+import java.util.Map;
+import java.util.HashMap;
 
 public class BDD {
 
@@ -143,5 +146,39 @@ public class BDD {
         }
     }
 
+    public String productesMesVenuts() {
+        String sql = "SELECT comanda FROM comandes WHERE pagada = TRUE";
+        Map<String, JSONObject> productes = new HashMap<>();
+    
+        try (PreparedStatement statement = getConnection().prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                String comandaJson = resultSet.getString("comanda");
+                JSONArray comandes = new JSONArray(comandaJson);
+                    for (int i = 0; i < comandes.length(); i++) {
+                    JSONObject producte = comandes.getJSONObject(i);
+                    String nom = producte.getString("nom");
+                    int quantitat = producte.getInt("quantitat");
+                    double preu = producte.getDouble("preu");
+    
+                    if (!productes.containsKey(nom)) {
+                        JSONObject dades = new JSONObject();
+                        dades.put("quantitat", 0);
+                        dades.put("preu", 0.0);
+                        productes.put(nom, dades);
+                    }
+    
+                    JSONObject dadesProducte = productes.get(nom);
+                    dadesProducte.put("quantitat", dadesProducte.getInt("quantitat") + quantitat);
+                    dadesProducte.put("preu", dadesProducte.getDouble("preu") + (quantitat * preu));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtenir els productes més venuts: " + e.getMessage());
+        }
+    
+        return new JSONObject(productes).toString();
+    }
+    
 
 }
