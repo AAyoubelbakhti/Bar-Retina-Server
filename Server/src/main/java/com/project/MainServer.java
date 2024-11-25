@@ -137,7 +137,7 @@ public class MainServer extends WebSocketServer {
     }
 
     public static void main(String[] args) {
-        MainServer server = new MainServer(3000);
+        MainServer server = new MainServer(4545);
         server.start();
 
         System.out.println("Servidor en execució. Prem CTRL+C per aturar-lo.");

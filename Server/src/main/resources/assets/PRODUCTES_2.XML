@@ -2,97 +2,97 @@
 <productes>
     <producte>
         <id>1</id>
-        <nom>Cafe</nom>
+        <nom>Cafè</nom>
         <preu>1.5</preu>
-        <descripcio>Bebida caliente hecha de granos de cafe.</descripcio>
+        <descripcio>Beguda calenta feta de grans de cafè.</descripcio>
         <imatge>cafe.png</imatge>
-        <categoria>Bebida</categoria>
+        <categoria>Beguda</categoria>
     </producte>
     <producte>
         <id>2</id>
         <nom>Te</nom>
         <preu>1.3</preu>
-        <descripcio>Bebida caliente hecha de hojas de te.</descripcio>
+        <descripcio>Beguda calenta feta de fulles de te.</descripcio>
         <imatge>te.png</imatge>
-        <categoria>Bebida</categoria>
+        <categoria>Beguda</categoria>
     </producte>
     <producte>
         <id>3</id>
-        <nom>Refresco</nom>
+        <nom>Refresc</nom>
         <preu>1.0</preu>
-        <descripcio>Bebida fria con gas.</descripcio>
+        <descripcio>Beguda freda amb gas.</descripcio>
         <imatge>refresc.png</imatge>
-        <categoria>Bebida</categoria>
+        <categoria>Beguda</categoria>
     </producte>
     <producte>
         <id>4</id>
-        <nom>Jugo de naranja</nom>
+        <nom>Suc de taronja</nom>
         <preu>1.8</preu>
-        <descripcio>Jugo de naranja recien exprimido.</descripcio>
+        <descripcio>Suc de taronja acabat d'esprémer.</descripcio>
         <imatge>suc.png</imatge>
-        <categoria>Bebida,Postre</categoria>
+        <categoria>Beguda</categoria>
     </producte>
     <producte>
         <id>5</id>
-        <nom>Cerveza</nom>
+        <nom>Cervesa</nom>
         <preu>2.5</preu>
-        <descripcio>Bebida alcoholica con gas.</descripcio>
+        <descripcio>Beguda alcohòlica amb gas.</descripcio>
         <imatge>cervesa.png</imatge>
-        <categoria>Bebida</categoria>
+        <categoria>Beguda</categoria>
     </producte>
     <producte>
         <id>6</id>
-        <nom>Bocadillo</nom>
+        <nom>Entrepà</nom>
         <preu>3.5</preu>
-        <descripcio>Pan relleno de ingredientes variados.</descripcio>
+        <descripcio>Pa farcit d'ingredients variats.</descripcio>
         <imatge>entrepa.png</imatge>
-        <categoria>Primer plato,Tapa</categoria>
+        <categoria>Primer plat</categoria>
     </producte>
     <producte>
         <id>7</id>
         <nom>Hamburguesa</nom>
         <preu>5.0</preu>
-        <descripcio>Carne en pan con lechuga y tomate.</descripcio>
+        <descripcio>Carn en pa amb enciam i tomàquet.</descripcio>
         <imatge>hamburguesa.png</imatge>
-        <categoria>Primer plato,Tapa</categoria>
+        <categoria>Primer plat</categoria>
     </producte>
     <producte>
         <id>8</id>
-        <nom>Ensalada</nom>
+        <nom>Amanida</nom>
         <preu>4.5</preu>
-        <descripcio>Ensalada fresca de vegetales.</descripcio>
+        <descripcio>Amanida fresca de vegetals.</descripcio>
         <imatge>amanida.png</imatge>
-        <categoria>Primer plato</categoria>
+        <categoria>Primer plat</categoria>
     </producte>
     <producte>
         <id>9</id>
         <nom>Pizza</nom>
         <preu>7.0</preu>
-        <descripcio>Pizza con salsa de tomate y queso.</descripcio>
+        <descripcio>Pizza amb salsa de tomàquet i formatge.</descripcio>
         <imatge>pizza.png</imatge>
-        <categoria>Primer plato</categoria>
+        <categoria>Primer plat</categoria>
     </producte>
     <producte>
         <id>10</id>
         <nom>Pasta</nom>
         <preu>6.5</preu>
-        <descripcio>Pasta italiana con salsa bolognesa.</descripcio>
+        <descripcio>Pasta italiana amb salsa bolonyesa.</descripcio>
         <imatge>pasta.png</imatge>
-        <categoria>Primer plato</categoria>
+        <categoria>Primer plat</categoria>
     </producte>
     <producte>
         <id>11</id>
-        <nom>Pastis</nom>
+        <nom>Pastís</nom>
         <preu>3.0</preu>
-        <descripcio>Dulce de chocolate.</descripcio>
+        <descripcio>Dolç de xocolata.</descripcio>
         <imatge>pastis.png</imatge>
-        <categoria>Reposteria,Postre</categoria>
+        <categoria>Reposteria</categoria>
     </producte>
     <producte>
         <id>12</id>
-        <nom>Galletas</nom>
+        <nom>Galetes</nom>
         <preu>2.0</preu>
-        <descripcio>Galletas dulces y crujientes.</descripcio>
+        <descripcio>Galetes dolces i cruixents.</descripcio>
         <imatge>galetes.png</imatge>
         <categoria>Reposteria</categoria>
     </producte>
@@ -100,79 +100,79 @@
         <id>13</id>
         <nom>Croissant</nom>
         <preu>1.8</preu>
-        <descripcio>Pan dulce de origen frances.</descripcio>
+        <descripcio>Pa dolç d'origen francès.</descripcio>
         <imatge>croissant.png</imatge>
         <categoria>Reposteria</categoria>
     </producte>
     <producte>
         <id>14</id>
-        <nom>Donuts</nom>
+        <nom>Dònuts</nom>
         <preu>2.2</preu>
-        <descripcio>Donut de azucar y canela.</descripcio>
+        <descripcio>Donut de sucre i canyella.</descripcio>
         <imatge>donuts.png</imatge>
         <categoria>Reposteria</categoria>
     </producte>
     <producte>
         <id>15</id>
-        <nom>Helado</nom>
+        <nom>Gelat</nom>
         <preu>2.5</preu>
-        <descripcio>Helado de vainilla con chocolate.</descripcio>
+        <descripcio>Gelat de vainilla amb xocolata.</descripcio>
         <imatge>gelat.png</imatge>
         <categoria>Reposteria</categoria>
     </producte>
     <producte>
         <id>16</id>
-        <nom>Tortilla de patatas</nom>
+        <nom>Truita de patates</nom>
         <preu>2.5</preu>
-        <descripcio>Tortilla de patatas casera.</descripcio>
+        <descripcio>Truita de patates casolana.</descripcio>
         <imatge>truita_patates.png</imatge>
-        <categoria>Tapa,Primer plato</categoria>
+        <categoria>Tapa</categoria>
     </producte>
     <producte>
         <id>17</id>
-        <nom>Calamares a la romana</nom>
+        <nom>Calamars a la romana</nom>
         <preu>3.0</preu>
-        <descripcio>Calamares a la romana fritos.</descripcio>
+        <descripcio>Calamars a la romana fregits.</descripcio>
         <imatge>calamars.png</imatge>
         <categoria>Tapa</categoria>
     </producte>
     <producte>
         <id>18</id>
-        <nom>Croquetas de pollo</nom>
+        <nom>Croquetes de pollastre</nom>
         <preu>2.8</preu>
-        <descripcio>Croquetas caseras de pollo.</descripcio>
+        <descripcio>Croquetes casolanes de pollastre.</descripcio>
         <imatge>croquetes_pollastre.png</imatge>
         <categoria>Tapa</categoria>
     </producte>
     <producte>
         <id>19</id>
-        <nom>Patatas bravas</nom>
+        <nom>Braves</nom>
         <preu>2.5</preu>
-        <descripcio>Patatas bravas con salsa picante.</descripcio>
+        <descripcio>Patates braves amb salsa picant.</descripcio>
         <imatge>braves.png</imatge>
         <categoria>Tapa</categoria>
     </producte>
     <producte>
         <id>20</id>
-        <nom>Pan con tomate</nom>
+        <nom>Pa amb tomàquet</nom>
         <preu>1.5</preu>
-        <descripcio>Pan con tomate y aceite de oliva.</descripcio>
+        <descripcio>Pa amb tomàquet i oli d'oliva.</descripcio>
         <imatge>pa_tomaquet.png</imatge>
         <categoria>Tapa</categoria>
     </producte>
     <producte>
         <id>21</id>
-        <nom>Pastel de fruta</nom>
+        <nom>Pastís de fruita</nom>
         <preu>3.5</preu>
-        <descripcio>Pastel con fruta.</descripcio>
+        <descripcio>Pastís amb fruita.</descripcio>
         <imatge>pastis_fruita.png</imatge>
-        <categoria>Postre,Reposteria</categoria>
+        <categoria>Postre</categoria>
     </producte>
     <producte>
         <id>22</id>
         <nom>Magdalena</nom>
         <preu>2.2</preu>
-        <descripcio>Magdalena de chocolate.</descripcio>
+        <descripcio>Magdalena de xocolata.</descripcio>
         <imatge>magdalena.png</imatge>
         <categoria>Postre</categoria>
     </producte>
@@ -180,15 +180,15 @@
         <id>23</id>
         <nom>Brownie</nom>
         <preu>2.8</preu>
-        <descripcio>Brownie de chocolate.</descripcio>
+        <descripcio>Brownie de xocolata.</descripcio>
         <imatge>brownie.png</imatge>
         <categoria>Postre</categoria>
     </producte>
     <producte>
         <id>24</id>
-        <nom>Churros</nom>
+        <nom>Xurros</nom>
         <preu>1.5</preu>
-        <descripcio>Churros con azucar.</descripcio>
+        <descripcio>Xurros amb sucre.</descripcio>
         <imatge>xurros.png</imatge>
         <categoria>Postre</categoria>
     </producte>
@@ -196,9 +196,10 @@
         <id>25</id>
         <nom>Smoothie</nom>
         <preu>3.2</preu>
-        <descripcio>Batido de frutas.</descripcio>
+        <descripcio>Batut de fruites.</descripcio>
         <imatge>smoothie.png</imatge>
         <categoria>Postre</categoria>
     </producte>
 </productes>
+
 

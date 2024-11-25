@@ -7,6 +7,9 @@
         <descripcio>Bebida caliente hecha de granos de cafe.</descripcio>
         <imatge>cafe.png</imatge>
         <categoria>Bebida</categoria>
+        <alergens>
+            <alergen>Ninguno</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>2</id>
@@ -15,6 +18,9 @@
         <descripcio>Bebida caliente hecha de hojas de te.</descripcio>
         <imatge>te.png</imatge>
         <categoria>Bebida</categoria>
+        <alergens>
+            <alergen>Ninguno</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>3</id>
@@ -23,6 +29,9 @@
         <descripcio>Bebida fria con gas.</descripcio>
         <imatge>refresc.png</imatge>
         <categoria>Bebida</categoria>
+        <alergens>
+            <alergen>Sulfitos</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>4</id>
@@ -30,7 +39,10 @@
         <preu>1.8</preu>
         <descripcio>Jugo de naranja recien exprimido.</descripcio>
         <imatge>suc.png</imatge>
-        <categoria>Bebida,Postre</categoria>
+        <categoria>Bebida</categoria>
+        <alergens>
+            <alergen>Ninguno</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>5</id>
@@ -39,6 +51,10 @@
         <descripcio>Bebida alcoholica con gas.</descripcio>
         <imatge>cervesa.png</imatge>
         <categoria>Bebida</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+            <alergen>Sulfitos</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>6</id>
@@ -46,7 +62,10 @@
         <preu>3.5</preu>
         <descripcio>Pan relleno de ingredientes variados.</descripcio>
         <imatge>entrepa.png</imatge>
-        <categoria>Primer plato,Tapa</categoria>
+        <categoria>Primer plato</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>7</id>
@@ -54,7 +73,11 @@
         <preu>5.0</preu>
         <descripcio>Carne en pan con lechuga y tomate.</descripcio>
         <imatge>hamburguesa.png</imatge>
-        <categoria>Primer plato,Tapa</categoria>
+        <categoria>Primer plato</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+            <alergen>Lactosa</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>8</id>
@@ -63,6 +86,9 @@
         <descripcio>Ensalada fresca de vegetales.</descripcio>
         <imatge>amanida.png</imatge>
         <categoria>Primer plato</categoria>
+        <alergens>
+            <alergen>Ninguno</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>9</id>
@@ -71,6 +97,10 @@
         <descripcio>Pizza con salsa de tomate y queso.</descripcio>
         <imatge>pizza.png</imatge>
         <categoria>Primer plato</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+            <alergen>Lactosa</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>10</id>
@@ -79,6 +109,9 @@
         <descripcio>Pasta italiana con salsa bolognesa.</descripcio>
         <imatge>pasta.png</imatge>
         <categoria>Primer plato</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>11</id>
@@ -86,15 +119,23 @@
         <preu>3.0</preu>
         <descripcio>Dulce de chocolate.</descripcio>
         <imatge>pastis.png</imatge>
-        <categoria>Reposteria,Postre</categoria>
+        <categoria>Reposteria</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+            <alergen>Lactosa</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>12</id>
         <nom>Galletas</nom>
         <preu>2.0</preu>
         <descripcio>Galletas dulces y crujientes.</descripcio>
-        <imatge>galetes.png</imatge>
+        <imatge>galetas.png</imatge>
         <categoria>Reposteria</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+            <alergen>Lactosa</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>13</id>
@@ -103,6 +144,10 @@
         <descripcio>Pan dulce de origen frances.</descripcio>
         <imatge>croissant.png</imatge>
         <categoria>Reposteria</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+            <alergen>Lactosa</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>14</id>
@@ -111,6 +156,10 @@
         <descripcio>Donut de azucar y canela.</descripcio>
         <imatge>donuts.png</imatge>
         <categoria>Reposteria</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+            <alergen>Lactosa</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>15</id>
@@ -119,6 +168,9 @@
         <descripcio>Helado de vainilla con chocolate.</descripcio>
         <imatge>gelat.png</imatge>
         <categoria>Reposteria</categoria>
+        <alergens>
+            <alergen>Lactosa</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>16</id>
@@ -126,7 +178,10 @@
         <preu>2.5</preu>
         <descripcio>Tortilla de patatas casera.</descripcio>
         <imatge>truita_patates.png</imatge>
-        <categoria>Tapa,Primer plato</categoria>
+        <categoria>Tapa</categoria>
+        <alergens>
+            <alergen>Huevo</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>17</id>
@@ -135,6 +190,10 @@
         <descripcio>Calamares a la romana fritos.</descripcio>
         <imatge>calamars.png</imatge>
         <categoria>Tapa</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+            <alergen>Moluscos</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>18</id>
@@ -143,6 +202,10 @@
         <descripcio>Croquetas caseras de pollo.</descripcio>
         <imatge>croquetes_pollastre.png</imatge>
         <categoria>Tapa</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+            <alergen>Lactosa</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>19</id>
@@ -151,6 +214,9 @@
         <descripcio>Patatas bravas con salsa picante.</descripcio>
         <imatge>braves.png</imatge>
         <categoria>Tapa</categoria>
+        <alergens>
+            <alergen>Ninguno</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>20</id>
@@ -159,6 +225,9 @@
         <descripcio>Pan con tomate y aceite de oliva.</descripcio>
         <imatge>pa_tomaquet.png</imatge>
         <categoria>Tapa</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>21</id>
@@ -166,7 +235,11 @@
         <preu>3.5</preu>
         <descripcio>Pastel con fruta.</descripcio>
         <imatge>pastis_fruita.png</imatge>
-        <categoria>Postre,Reposteria</categoria>
+        <categoria>Postre</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+            <alergen>Lactosa</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>22</id>
@@ -175,6 +248,11 @@
         <descripcio>Magdalena de chocolate.</descripcio>
         <imatge>magdalena.png</imatge>
         <categoria>Postre</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+            <alergen>Lactosa</alergen>
+            <alergen>Huevo</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>23</id>
@@ -183,6 +261,10 @@
         <descripcio>Brownie de chocolate.</descripcio>
         <imatge>brownie.png</imatge>
         <categoria>Postre</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+            <alergen>Frutos secos</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>24</id>
@@ -191,6 +273,9 @@
         <descripcio>Churros con azucar.</descripcio>
         <imatge>xurros.png</imatge>
         <categoria>Postre</categoria>
+        <alergens>
+            <alergen>Gluten</alergen>
+        </alergens>
     </producte>
     <producte>
         <id>25</id>
@@ -199,6 +284,9 @@
         <descripcio>Batido de frutas.</descripcio>
         <imatge>smoothie.png</imatge>
         <categoria>Postre</categoria>
+        <alergens>
+            <alergen>Ninguno</alergen>
+        </alergens>
     </producte>
 </productes>
 

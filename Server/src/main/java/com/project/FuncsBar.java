@@ -134,7 +134,7 @@ public class FuncsBar {
                     jsonObject.put("preu", producteElement.getElementsByTagName("preu").item(0).getTextContent());
                     jsonObject.put("descripcio", producteElement.getElementsByTagName("descripcio").item(0).getTextContent());
                     jsonObject.put("imatge", producteElement.getElementsByTagName("imatge").item(0).getTextContent());
-
+                    jsonObject.put("categoria", producteElement.getElementsByTagName("categoria").item(0).getTextContent());
                     jsonArray.put(jsonObject);
                 }
             }
@@ -160,7 +160,10 @@ public class FuncsBar {
             Document doc = builder.parse(inputStream);
             doc.getDocumentElement().normalize();
             XPath xPath = XPathFactory.newInstance().newXPath();
-            String expression = "//producte[categoria='" + categoria + "']"; 
+            // String expression = "//producte[categoria='" + categoria + "']"; 
+            String expression = "//producte[contains(translate(categoria, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" 
+                     + categoria.toLowerCase() + "')]";
+
             NodeList nodeList = (NodeList) xPath.evaluate(expression, doc, XPathConstants.NODESET);
             JSONArray jsonArray = new JSONArray();
     
