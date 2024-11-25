@@ -1,7 +1,8 @@
 package com.project;
 
 import org.java_websocket.server.WebSocketServer; 
-import org.java_websocket.WebSocket; 
+import org.java_websocket.WebSocket;
+import org.java_websocket.exceptions.WebsocketNotConnectedException;
 import org.java_websocket.handshake.ClientHandshake;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -111,19 +112,21 @@ public class MainServer extends WebSocketServer {
                 if (type.equals("update-comanda")){
                     int idComanda = bdd.obtenirUltimIdComandaPerTaula(idTaula);
                     bdd.cambiComanda(idComanda, idTaula, idCambrer, comandaTxt , formattedDate.toString(), estatComanda, preuComanda, false);
-
+                    if(messajeData.getBoolean("llest")){
+                        JSONObject mensaje = new JSONObject();
+                        mensaje.put("type", "producte-llest");
+                        String productName = messajeData.getString("producte");
+                        mensaje.put("body", "El producto "+ productName+ " esta listo");
+                       // conn.send(mensaje.toString());
+                       broadcastMessage(mensaje.toString(), null);
+                        System.out.println("Joloco");
+                    }
                 }else {
                     bdd.insertComanda(idTaula, idCambrer, comandaTxt , formattedDate.toString(), estatComanda, preuComanda, false);
 
                 }
                 System.out.println(message);
-                if(messajeData.getBoolean("llest")){
-                    JSONObject mensaje = new JSONObject();
-                    mensaje.put("type", "producte-llest");
-                    mensaje.put("body", "El producto "+messajeData.getString("producte")+ " esta listo");
-                    conn.send(mensaje.toString());
-                    System.out.println("Joan marica");
-                }
+               
                 break;
 
             
@@ -141,6 +144,23 @@ public class MainServer extends WebSocketServer {
         conn.send(response.toString()); 
     }
 
+
+      private void broadcastMessage(String message, WebSocket sender) {
+        for (Map.Entry<WebSocket, String> entry : clients.entrySet()) {
+            WebSocket conn = entry.getKey();
+            if (conn != sender) {
+                try {
+                    conn.send(message);
+                } catch (WebsocketNotConnectedException e) {
+                    System.out.println("Client " + entry.getValue() + " not connected.");
+                    clients.remove(conn);
+                    //availableNames.add(entry.getValue());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
     @Override
     public void onError(WebSocket conn, Exception ex) {
         ex.printStackTrace();
@@ -152,7 +172,7 @@ public class MainServer extends WebSocketServer {
     }
 
     public static void main(String[] args) {
-        MainServer server = new MainServer(3000);
+        MainServer server = new MainServer(4545);
         server.start();
 
         System.out.println("Servidor en execució. Prem CTRL+C per aturar-lo.");
