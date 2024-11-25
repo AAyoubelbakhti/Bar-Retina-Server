@@ -317,7 +317,7 @@ public class FuncsBar {
                     String imatge = producteElement.getElementsByTagName("imatge").item(0).getTextContent();
     
                     // Convertir la imagen a Base64
-                    String imagePath = "/assets/img/demo/" + imatge; // Ruta de la imagen
+                    String imagePath = "/assets/img/" + imatge; // Ruta de la imagen
                     
                     String base64Image = imageToBase64(imagePath);
     
