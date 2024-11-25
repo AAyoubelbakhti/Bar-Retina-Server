@@ -109,6 +109,13 @@ public class MainServer extends WebSocketServer {
 
                 }
                 System.out.println(message);
+                if(messajeData.getBoolean("llest")){
+                    JSONObject mensaje = new JSONObject();
+                    mensaje.put("type", "producte-llest");
+                    mensaje.put("body", "El producto "+messajeData.getString("producte")+ " esta listo");
+                    conn.send(mensaje.toString());
+                    System.out.println("Joan marica");
+                }
                 break;
 
             
@@ -137,7 +144,7 @@ public class MainServer extends WebSocketServer {
     }
 
     public static void main(String[] args) {
-        MainServer server = new MainServer(4545);
+        MainServer server = new MainServer(3000);
         server.start();
 
         System.out.println("Servidor en execució. Prem CTRL+C per aturar-lo.");
