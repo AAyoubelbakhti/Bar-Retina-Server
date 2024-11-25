@@ -70,6 +70,14 @@ public class MainServer extends WebSocketServer {
                 response.put("products", FuncsBar.mostrarProductes());
                 response.put("body", comandes.toString());
                 break;
+            case "top-productes":
+            System.out.println("Estoy en el caso del servidor ");
+                comandes = bdd.obtenirComandes();
+                response.put("type", "top-productes");
+                response.put("products", FuncsBar.mostrarTopProductes(comandes));
+               // response.put("body", comandes.toString());
+
+                break;
             case "select-comanda":
                 comandes = bdd.obtenirComandes();
                 response.put("type", "comandes");
