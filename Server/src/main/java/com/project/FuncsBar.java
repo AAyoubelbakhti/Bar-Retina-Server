@@ -303,34 +303,35 @@ public class FuncsBar {
             // Obtener todos los nodos <producte>
             NodeList nodeList = doc.getElementsByTagName("producte");
     
-            JSONArray jsonArray = new JSONArray();
+            //JSONArray jsonArray = new JSONArray();
+            JSONObject jsonImages = new JSONObject();
     
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node producteNode = nodeList.item(i);
                 if (producteNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element producteElement = (Element) producteNode;
-                    JSONObject jsonObject = new JSONObject();
+                    // JSONObject jsonObject = new JSONObject();
     
                     // Obtener los datos del producto
-                    String id = producteElement.getElementsByTagName("id").item(0).getTextContent();
+                   // String id = producteElement.getElementsByTagName("id").item(0).getTextContent();
                    
-                    String imatge = producteElement.getElementsByTagName("imatge").item(0).getTextContent();
+                    String imageName = producteElement.getElementsByTagName("imatge").item(0).getTextContent();
     
                     // Convertir la imagen a Base64
-                    String imagePath = "/assets/img/" + imatge; // Ruta de la imagen
+                    String imagePath = "/assets/img/" + imageName; // Ruta de la imagen
                     
                     String base64Image = imageToBase64(imagePath);
     
                     // Agregar los datos al JSON
-                    jsonObject.put("id", id);
-                    jsonObject.put("nom_imatge", imatge);
-                    jsonObject.put("imatge", base64Image); // Agregar la imagen como Base64
+                    //jsonObject.put("id", id);
+                    //jsonObject.put("nom_imatge", imatge);
+                    jsonImages.put(imageName, base64Image); // Agregar la imagen como Base64
     
-                    jsonArray.put(jsonObject);
+                    // jsonImages.put(imatge, jsonObject);
                 }
             }
     
-            return jsonArray.toString();
+            return jsonImages.toString();
         } catch (Exception e) {
             System.err.println("No es pot obrir l'arxiu");
             e.printStackTrace();

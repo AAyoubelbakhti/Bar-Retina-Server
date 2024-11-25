@@ -1,7 +1,7 @@
-com\project\MainServer.class
 com\project\FuncsBar.class
-com\project\UtilsWS.class
+com\project\MainServer.class
 com\project\ElementProducte.class
-com\project\UtilsWS$1.class
 com\project\BDD.class
 com\project\MainClient.class
+com\project\UtilsWS.class
+com\project\UtilsWS$1.class
