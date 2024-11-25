@@ -166,7 +166,32 @@ public class BDD {
         }
         return -1; // Retornar -1 si no hi ha cap registre o si hi ha un error
     }
-    
-    
+
+    public JSONObject obtenirÚltimaComandaPerTaula(int id_taula) {
+        String sql = "SELECT id_comanda, id_taula, id_cambrer, comanda, data_comanda, estat_comanda, preu_comanda, pagada FROM comandes WHERE id_comanda = (SELECT MAX(id_comanda) FROM comandes WHERE id_taula = " + id_taula +")";
+        JSONArray arrayComandes = new JSONArray();
+
+        try (PreparedStatement statement = getConnection().prepareStatement(sql);
+                ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+
+                JSONObject comanda = new JSONObject();
+
+                comanda.put("id_comanda", resultSet.getInt("id_comanda"));
+                comanda.put("id_taula", resultSet.getInt("id_taula"));
+                comanda.put("id_cambrer", resultSet.getInt("id_cambrer"));
+                comanda.put("comanda", resultSet.getString("comanda"));
+                comanda.put("data_comanda", resultSet.getString("data_comanda"));
+                comanda.put("estat_comanda", resultSet.getString("estat_comanda"));
+                comanda.put("preu_comanda", resultSet.getDouble("preu_comanda"));
+                comanda.put("pagada", resultSet.getBoolean("pagada"));
+                arrayComandes.put(comanda);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtenir les comandes: " + e.getMessage());
+        }
+        return arrayComandes.getJSONObject(0);
+    }
 
 }

@@ -9,20 +9,25 @@ import java.util.Arrays;
 import java.util.Base64;
 
 import org.w3c.dom.*;
+
+import com.mysql.cj.xdevapi.JsonArray;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+
+
+import java.util.*;
+import java.util.stream.Collectors;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
@@ -160,13 +165,7 @@ public class FuncsBar {
                     jsonObject.put("preu", producteElement.getElementsByTagName("preu").item(0).getTextContent());
                     jsonObject.put("descripcio", producteElement.getElementsByTagName("descripcio").item(0).getTextContent());
                     jsonObject.put("imatge", producteElement.getElementsByTagName("imatge").item(0).getTextContent());
-
-                    // String imageName = "/assets/img/"
-                    //         + producteElement.getElementsByTagName("imatge").item(0).getTextContent();
-                            
-                    // String base64 = imageToBase64(imageName);
-
-                    //jsonObject.put("imatge", base64);
+                    jsonObject.put("categoria", producteElement.getElementsByTagName("categoria").item(0).getTextContent());
                     jsonArray.put(jsonObject);
                 }
             }
@@ -177,6 +176,69 @@ public class FuncsBar {
             return null;
         }
     }
+
+
+    
+        // [{"descripcio":".","quantitat":3,"preu":5.4,"estat_producte":"pagat","id":"4","nom":"Suc de taronja","imatge":"suc.png"},
+        // {"descripcio":"","quantitat":4,"preu":10,"estat_producte":"pendent","id":"5","nom":"Cervesa","imatge":"cervesa.png"},
+        // {"descripcio":"Pa farcit d ingredients variats.","quantitat":1,"preu":3.5,"estat_producte":"pagat","id":"6","nom":"Entrepa",
+        // "imatge":"entrepa.png"}]
+
+
+    public static String mostrarTopProductes(JSONArray comandes) {
+        try {
+            // Mapa para almacenar la cantidad total vendida de cada producto
+            Map<String, Integer> productQuantities = new HashMap<>();
+
+            // Iterar por cada producto en el JSONArray
+            for (int i = 0; i < comandes.length(); i++) {
+                JSONObject comanda = comandes.getJSONObject(i);
+                String producteString = comanda.getString("comanda");
+                JSONArray productes = new JSONArray(producteString);
+
+
+                for (int y = 0; y < productes.length(); y++) {
+                    JSONObject producte = productes.getJSONObject(y); 
+
+                    System.out.println(producte.toString());
+                    // Verificar si el producto está "pagat"
+                    if (producte.has("estat_producte")){
+                        if ("pagat".equalsIgnoreCase(producte.getString("estat_producte"))) {
+                            String nomProducte = producte.getString("nom");
+                            int quantitat = producte.getInt("quantitat");
+
+                            // Acumular la cantidad vendida de cada producto
+                            productQuantities.put(nomProducte, productQuantities.getOrDefault(nomProducte, 0) + quantitat);
+                        }
+                    }
+                }
+            }
+
+            // Ordenar los productos por cantidad en orden descendente y limitar a los 10 primeros
+            List<Map.Entry<String, Integer>> topProductes = productQuantities.entrySet().stream()
+                    .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
+                    .limit(10)
+                    .collect(Collectors.toList());
+
+            // Crear un JSONArray para los productos del top 10
+            JSONArray topProductesJson = new JSONArray();
+            for (Map.Entry<String, Integer> entry : topProductes) {
+                JSONObject producteJson = new JSONObject();
+                producteJson.put("nom", entry.getKey());
+                producteJson.put("quantitat", entry.getValue());
+                topProductesJson.put(producteJson);
+            }
+
+            // Devolver el resultado como un String
+            System.out.println("Top productes: "  + topProductesJson.toString());
+            return topProductesJson.toString();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
 
     public static String mostrarTags(String categoria) {
@@ -192,7 +254,10 @@ public class FuncsBar {
             Document doc = builder.parse(inputStream);
             doc.getDocumentElement().normalize();
             XPath xPath = XPathFactory.newInstance().newXPath();
-            String expression = "//producte[categoria='" + categoria + "']"; 
+            // String expression = "//producte[categoria='" + categoria + "']"; 
+            String expression = "//producte[contains(translate(categoria, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" 
+                     + categoria.toLowerCase() + "')]";
+
             NodeList nodeList = (NodeList) xPath.evaluate(expression, doc, XPathConstants.NODESET);
             JSONArray jsonArray = new JSONArray();
     

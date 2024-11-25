@@ -1,7 +1,8 @@
 package com.project;
 
 import org.java_websocket.server.WebSocketServer; 
-import org.java_websocket.WebSocket; 
+import org.java_websocket.WebSocket;
+import org.java_websocket.exceptions.WebsocketNotConnectedException;
 import org.java_websocket.handshake.ClientHandshake;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -71,19 +72,29 @@ public class MainServer extends WebSocketServer {
                 response.put("body", comandes.toString());
                 response.put("imatges", FuncsBar.mostrarImagenes().toString());
                 break;
-            // case "imatges":
-            //     response.put("type", "imatges");
-                
-                // break;
+            case "top-productes":
+            System.out.println("Estoy en el caso del servidor ");
+                comandes = bdd.obtenirComandes();
+                response.put("type", "top-productes");
+                response.put("products", FuncsBar.mostrarTopProductes(comandes));
+               // response.put("body", comandes.toString());
+
+                break;
             case "select-comanda":
                 comandes = bdd.obtenirComandes();
                 response.put("type", "comandes");
                 response.put("body", comandes.toString());
                 break;
+
+            case "select-comanda-taula":
+                JSONObject comanda = bdd.obtenirÚltimaComandaPerTaula(messageJson.getInt("idMesa"));
+                response.put("type", "comanda-taula");
+                response.put("body", comanda.toString());
+                break;
                
             case "update-comanda":
             case "insert-comanda":
-                JSONObject messajeData = messageJson.getJSONObject("body");
+                JSONObject messajeData = messageJson.getJSONObject("body"); 
             // [{"id":"1","nom":"CafÃ¨","descripcio":"Beguda calenta feta de grans de cafÃ¨.","imatge":"cafe.png","preu":3,"quantitat":2},
             // {"id":"2","nom":"Te","descripcio":"Beguda calenta feta de fulles de te.","imatge":"te.png","preu":6.5,"quantitat":5},{"id":"3","nom":"Refresc","descripcio":"Beguda freda amb gas.","imatge":"refresc.png","preu":2,"quantitat":2},
             // {"id":"4","nom":"Suc de taronja","descripcio":"Suc de taronja acabat d'esprÃ©mer.","imatge":"suc-de-taronja.png","preu":1.8,"quantitat":1}]
@@ -102,12 +113,21 @@ public class MainServer extends WebSocketServer {
                 if (type.equals("update-comanda")){
                     int idComanda = bdd.obtenirUltimIdComandaPerTaula(idTaula);
                     bdd.cambiComanda(idComanda, idTaula, idCambrer, comandaTxt , formattedDate.toString(), estatComanda, preuComanda, false);
-
+                    if(messajeData.getBoolean("llest")){
+                        JSONObject mensaje = new JSONObject();
+                        mensaje.put("type", "producte-llest");
+                        String productName = messajeData.getString("producte");
+                        mensaje.put("body", "El producto "+ productName+ " esta listo");
+                       // conn.send(mensaje.toString());
+                       broadcastMessage(mensaje.toString(), null);
+                        System.out.println("Joloco");
+                    }
                 }else {
                     bdd.insertComanda(idTaula, idCambrer, comandaTxt , formattedDate.toString(), estatComanda, preuComanda, false);
 
                 }
                 System.out.println(message);
+               
                 break;
 
             
@@ -125,6 +145,23 @@ public class MainServer extends WebSocketServer {
         conn.send(response.toString()); 
     }
 
+
+      private void broadcastMessage(String message, WebSocket sender) {
+        for (Map.Entry<WebSocket, String> entry : clients.entrySet()) {
+            WebSocket conn = entry.getKey();
+            if (conn != sender) {
+                try {
+                    conn.send(message);
+                } catch (WebsocketNotConnectedException e) {
+                    System.out.println("Client " + entry.getValue() + " not connected.");
+                    clients.remove(conn);
+                    //availableNames.add(entry.getValue());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
     @Override
     public void onError(WebSocket conn, Exception ex) {
         ex.printStackTrace();
