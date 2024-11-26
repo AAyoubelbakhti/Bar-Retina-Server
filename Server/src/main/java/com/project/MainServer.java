@@ -57,13 +57,10 @@ public class MainServer extends WebSocketServer {
 
         JSONObject response = new JSONObject();
         switch (type) {
-            case "Beguda":
-            case "Primer plat":
-            case "Reposteria":
-            case "Tapa":
-            case "Postre":
+            case "tags":
                 response.put("type", "tags");
-                response.put("products", FuncsBar.mostrarTags(message));
+                response.put("products", FuncsBar.mostrarTags(messageJson.getString("body")));
+                response.put("imatges", FuncsBar.mostrarImagenes().toString());
                 break;
             case "productes":
                 JSONArray comandes = bdd.obtenirComandes();
@@ -77,6 +74,7 @@ public class MainServer extends WebSocketServer {
                 comandes = bdd.obtenirComandes();
                 response.put("type", "top-productes");
                 response.put("products", FuncsBar.mostrarTopProductes(comandes));
+                // response.put("imatges", FuncsBar.mostrarImagenes().toString());
                // response.put("body", comandes.toString());
 
                 break;
