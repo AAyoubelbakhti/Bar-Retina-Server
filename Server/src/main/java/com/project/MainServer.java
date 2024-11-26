@@ -53,7 +53,7 @@ public class MainServer extends WebSocketServer {
         
         String type = messageJson.getString("type");
         String clientName = clients.get(conn);
-        System.out.println("Missatge de " + clientName + ": " + message);
+        //System.out.println("Missatge de " + clientName + ": " + message);
 
         JSONObject response = new JSONObject();
         switch (type) {

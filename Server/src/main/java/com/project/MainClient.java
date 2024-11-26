@@ -6,7 +6,9 @@ import java.util.Scanner;
 public class MainClient {
 
     public static void main(String[] args) {
-        String wsLocation = "wss://jmartinezmarin.ieti.site:443";
+        // String wsLocation = "wss://jmartinezmarin.ieti.site:443";
+        String wsLocation = "ws://localhost:4545";
+
         UtilsWS wsClient = UtilsWS.getSharedInstance(wsLocation);
 
         wsClient.onOpen(message -> {
@@ -14,16 +16,34 @@ public class MainClient {
         });
 
         wsClient.onMessage(message -> {
-            //System.out.println("X:"  + message);
-            JSONObject response = new JSONObject(message);
-            if ("tags".equals(response.getString("type"))) {
-                System.out.println("Respostes per la categoria seleccionada (Tags):");
-                System.out.println(response.getString("products"));
-            } else if ("productes".equals(response.getString("type"))) {
-                System.out.println("Llista de productes:");
-                System.out.println(response.getString("products"));
-            } else if ("error".equals(response.getString("type"))) {
-                System.out.println("Error: " + response.getString("message"));
+            //System.out.println("Resposta del servidor: " + message);
+            try {
+                JSONObject response = new JSONObject(message);
+                String type = response.getString("type");
+
+                switch (type) {
+                    case "tags":
+                        System.out.println("Respostes per la categoria seleccionada (Tags):");
+                        System.out.println(response.get("products"));
+                        break;
+                    case "productes":
+                        System.out.println("Llista de productes:");
+                        System.out.println(response.get("products"));
+                        break;
+                    case "top-productes":
+                        System.out.println("Productes més venuts:");
+                        System.out.println(response.get("products"));
+                        break;
+                    case "error":
+                        System.out.println("Error: " + response.getString("message"));
+                        break;
+                    default:
+                        System.out.println("Resposta desconeguda del servidor.");
+                        break;
+                }
+            } catch (Exception e) {
+                System.err.println("Error al processar la resposta del servidor: " + e.getMessage());
+                e.printStackTrace();
             }
         });
 
@@ -51,28 +71,45 @@ public class MainClient {
             System.out.println("3. Reposteria");
             System.out.println("4. Tapa");
             System.out.println("5. Postre");
-            System.out.println("6. Sortir");
+            System.out.println("6. Productes més venuts");
+            System.out.println("7. Sortir");
 
             int option = scanner.nextInt();
+            JSONObject message = new JSONObject();
 
             switch (option) {
                 case 1:
-                    wsClient.safeSend("Beguda");
+                    message.put("type", "tags");
+                    message.put("body", "Bebida");
+                    wsClient.safeSend(message.toString());
                     break;
                 case 2:
-                    wsClient.safeSend("Primer plat");
+                    message.put("type", "tags");
+                    message.put("body", "Primer plato");
+                    wsClient.safeSend(message.toString());
                     break;
                 case 3:
-                    wsClient.safeSend("Reposteria");
+                    message.put("type", "tags");
+                    message.put("body", "Reposteria");
+                    wsClient.safeSend(message.toString());
                     break;
                 case 4:
-                    wsClient.safeSend("Tapa");
+                    message.put("type", "tags");
+                    message.put("body", "Tapa");
+                    wsClient.safeSend(message.toString());
                     break;
                 case 5:
-                    wsClient.safeSend("Postre");
+                    message.put("type", "tags");
+                    message.put("body", "Postre");
+                    wsClient.safeSend(message.toString());
                     break;
                 case 6:
+                    message.put("type", "top-productes");
+                    wsClient.safeSend(message.toString());
+                    break;
+                case 7:
                     System.out.println("Sortint...");
+                    wsClient.safeSend("Sortir");
                     wsClient.forceExit();
                     return;
                 default:
