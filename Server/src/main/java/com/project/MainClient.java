@@ -1,5 +1,6 @@
 package com.project;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.Scanner;
 
@@ -34,6 +35,26 @@ public class MainClient {
                         System.out.println("Productes més venuts:");
                         System.out.println(response.get("products"));
                         break;
+                    case "notificacions":
+                        System.out.println("Notificacions:");
+                        String notificaString = response.get("notificacions").toString();
+                        JSONArray notificaciones = new JSONArray(notificaString);
+                        System.out.println("Ultimes notificacions...");
+                        for (int i = 0; i < notificaciones.length(); i++) {
+                            String jsonString = notificaciones.getString(i); // Obtén la cadena JSON
+                            JSONObject notificacion = new JSONObject(jsonString); // Conviértelo a un JSONObject
+                            String idCambrer = String.valueOf(notificacion.getInt("idCambrer"));
+                            String data = notificacion.getString("body");
+                            String hora = notificacion.getString("timestamp");
+                        
+                            System.out.println("Camarero: " + idCambrer + " || " + hora + " || " + data);
+                        }
+                        
+
+                        break;
+                    case "producte-llest":
+                        System.out.println("Ha llegado una notificacion y se ha guardado en los logs (Opcion 7)");
+                        break;
                     case "error":
                         System.out.println("Error: " + response.getString("message"));
                         break;
@@ -54,7 +75,7 @@ public class MainClient {
         wsClient.onError(message -> {
             System.out.println("Error de connexió: " + message);
         });
-
+        
         while (!wsClient.isOpen()) {
             try {
                 Thread.sleep(100);
@@ -72,7 +93,8 @@ public class MainClient {
             System.out.println("4. Tapa");
             System.out.println("5. Postre");
             System.out.println("6. Productes més venuts");
-            System.out.println("7. Sortir");
+            System.out.println("7. Notificacions");
+            System.out.println("8. Sortir");
 
             int option = scanner.nextInt();
             JSONObject message = new JSONObject();
@@ -108,6 +130,10 @@ public class MainClient {
                     wsClient.safeSend(message.toString());
                     break;
                 case 7:
+                    message.put("type", "notificacions");
+                    wsClient.safeSend(message.toString());
+                    break;
+                case 8:
                     System.out.println("Sortint...");
                     wsClient.safeSend("Sortir");
                     wsClient.forceExit();
@@ -117,4 +143,5 @@ public class MainClient {
             }
         }
     }
+    
 }

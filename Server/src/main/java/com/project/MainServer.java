@@ -10,6 +10,9 @@ import org.json.JSONObject;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.net.InetSocketAddress;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -20,6 +23,7 @@ public class MainServer extends WebSocketServer {
     private static final int MAX_CONNECTIONS = 5;
     private static final Map<WebSocket, String> clients = new ConcurrentHashMap<>();
     private final BDD bdd;
+    private JSONArray notificacionsCambrer;
 
     public MainServer(int port) {
         super(new InetSocketAddress(port));
@@ -35,6 +39,7 @@ public class MainServer extends WebSocketServer {
         } else {
             clients.put(conn, "Client_" + connectionCount.get());
             System.out.println("Nou client connectat: Client_" + connectionCount.get());
+            notificacionsCambrer = new JSONArray();
         }
     }
 
@@ -76,7 +81,12 @@ public class MainServer extends WebSocketServer {
                 response.put("products", FuncsBar.mostrarTopProductes(comandes));
                 // response.put("imatges", FuncsBar.mostrarImagenes().toString());
                // response.put("body", comandes.toString());
-
+               break;
+            case "notificacions":
+                   comandes = bdd.obtenirComandes();
+                   response.put("type", "notificacions");
+                   response.put("notificacions", notificacionsCambrer.toString());
+                  
                 break;
             case "select-comanda":
                 comandes = bdd.obtenirComandes();
@@ -92,6 +102,7 @@ public class MainServer extends WebSocketServer {
                
             case "update-comanda":
             case "insert-comanda":
+                int idCambrer = -1;
                 JSONObject messajeData = messageJson.getJSONObject("body"); 
             // [{"id":"1","nom":"CafÃ¨","descripcio":"Beguda calenta feta de grans de cafÃ¨.","imatge":"cafe.png","preu":3,"quantitat":2},
             // {"id":"2","nom":"Te","descripcio":"Beguda calenta feta de fulles de te.","imatge":"te.png","preu":6.5,"quantitat":5},{"id":"3","nom":"Refresc","descripcio":"Beguda freda amb gas.","imatge":"refresc.png","preu":2,"quantitat":2},
@@ -100,7 +111,7 @@ public class MainServer extends WebSocketServer {
 
                 int idTaula = messajeData.getInt("idTaula");
                
-                int idCambrer = messajeData.getInt("idCambrer");
+                idCambrer = messajeData.getInt("idCambrer");
                 String estatComanda = messajeData.getString("estatComanda");
                 Double preuComanda = messajeData.getDouble("preuComanda");
 
@@ -113,9 +124,16 @@ public class MainServer extends WebSocketServer {
                     bdd.cambiComanda(idComanda, idTaula, idCambrer, comandaTxt , formattedDate.toString(), estatComanda, preuComanda, false);
                     if(messajeData.getBoolean("llest")){
                         JSONObject mensaje = new JSONObject();
-                        mensaje.put("type", "producte-llest");
+                        mensaje.put("idCambrer", idCambrer);
+
                         String productName = messajeData.getString("producte");
                         mensaje.put("body", "El producto "+ productName+ " esta listo");
+                        LocalDateTime now = LocalDateTime.now();
+                        mensaje.put("timestamp", now.format(DateTimeFormatter.ISO_DATE_TIME));
+                        notificacionsCambrer.put(mensaje.toString());
+                        mensaje.put("type", "producte-llest");
+                        
+                        
                        // conn.send(mensaje.toString());
                        broadcastMessage(mensaje.toString(), null);
                         System.out.println("Joloco");
